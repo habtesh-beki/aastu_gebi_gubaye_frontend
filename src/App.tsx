@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
+
 function App() {
-  return <h1 className="text-9xl">Hello, World!</h1>;
+  return <Button className="bg-blue-500">Click Me</Button>;
 }
 
 export default App;

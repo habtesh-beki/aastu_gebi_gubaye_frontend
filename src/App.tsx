@@ -1,7 +1,7 @@
-import { Button } from "@/shared/components/ui/button";
+import HomePage from "@/pages/index";
 
 function App() {
-  return <Button className="bg-blue-500">Click Me</Button>;
+  return <HomePage />;
 }
 
 export default App;

@@ -49,7 +49,11 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			bg_login: '#ECF2FF',
+			bg_loginBoard: '#F6F9FF',
+			bg_btn: '#0335BA',
+			color_lable:'#525252'
   		}
   	}
   },

@@ -1,7 +1,11 @@
 import HomePage from "@/pages/index";
+import LoginPage from "./pages/login";
 
 function App() {
-  return <HomePage />;
+  return (
+    <LoginPage/>
+  // <HomePage />
+)
 }
 
 export default App;

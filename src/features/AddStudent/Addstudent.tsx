@@ -9,7 +9,7 @@ import {
   
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
-import MultiSelect from "@/features/AddStudent/multicheck";
+import MultiSelect from "@/features/AddStudent/components/multicheck";
 import { useState } from "react";
 
 export default function AddStudent(){
@@ -20,7 +20,7 @@ export default function AddStudent(){
          <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
             <h2 className="text-xl text-bg_btn font-bold">Add new member</h2>
          </div>
-         <ScrollArea className="flex-grow border-1 border-red-500 border-solid pl-9 pr-7">
+         <ScrollArea className="flex-grow border-1 bg-white border-red-500 border-solid pl-9 pr-7">
             <div className="flex items-center gap-3">
                 <h5 className="mt-3 font-bold">User Info</h5>
                 <hr className="flex-grow  h-2 mt-4"/>

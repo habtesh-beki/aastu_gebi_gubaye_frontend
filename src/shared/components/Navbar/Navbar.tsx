@@ -1,9 +1,11 @@
 import { Separator } from "@/shared/components/ui/separator";
 import LOGO from "@/assets/logo.png";
 
-export default function Navbar() {
+export default function Navbar({ style }: { style?: string }) {
   return (
-    <nav className="p-4 flex justify-between shadow-md">
+    <nav
+      className={`p-4 bg-background flex justify-between shadow-md ${style}`}
+    >
       <div className="flex items-center gap-4">
         <img
           src={LOGO}

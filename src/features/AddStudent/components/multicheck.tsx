@@ -8,7 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/shared/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction} from "react";
 
 type Option = { label: string; value: string };
 
@@ -54,12 +54,12 @@ const MultiSelect = ({
         </DropdownMenuTrigger>
         <DropdownMenuContent
           className="w-56"
-          onCloseAutoFocus={(e) => e.preventDefault()}
+          onCloseAutoFocus={(e: Event) => e.preventDefault()}
         >
           {values.map((value: ISelectProps["options"][0], index: number) => {
             return (
               <DropdownMenuCheckboxItem
-                onSelect={(e) => e.preventDefault()}
+                onSelect={(e: Event) => e.preventDefault()}
                 key={index}
                 checked={isOptionSelected(value.value)}
                 onCheckedChange={() => handleSelectChange(value.value)}

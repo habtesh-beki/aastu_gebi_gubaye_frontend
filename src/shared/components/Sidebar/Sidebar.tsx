@@ -39,6 +39,7 @@ export default function Sidebar({ items, style }: SidebarProps) {
                             borderLeftWidth: "4px",
                           }
                         : {
+                            color: "currentColor",
                             backgroundColor: "transparent",
                             borderLeftColor: "transparent",
                             borderLeftWidth: "0px",
@@ -78,6 +79,7 @@ export default function Sidebar({ items, style }: SidebarProps) {
                         borderLeftWidth: "4px",
                       }
                     : {
+                        color: "currentColor",
                         backgroundColor: "transparent",
                         borderLeftColor: "transparent",
                         borderLeftWidth: "0px",

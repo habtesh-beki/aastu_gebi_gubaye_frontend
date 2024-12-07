@@ -64,7 +64,7 @@ export default function Sidebar({ items, style }: SidebarProps) {
             );
           })}
           <Separator />
-          <NavLink to="my-profile">
+          <NavLink to="/my-profile">
             {({ isActive }) => (
               <motion.div
                 className={`w-56 px-4 py-3 flex gap-2 items-center `}

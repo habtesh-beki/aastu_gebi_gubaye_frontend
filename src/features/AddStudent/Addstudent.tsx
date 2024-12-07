@@ -9,7 +9,7 @@ import {
   
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
-import MultiSelect from "@/features/AddStudent/multicheck";
+import MultiSelect from "@/features/AddStudent/components/multicheck";
 import { useState } from "react";
 
 export default function AddStudent(){

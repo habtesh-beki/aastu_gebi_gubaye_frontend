@@ -1,10 +1,13 @@
+import { NavLink } from "react-router";
 import { Separator } from "@/shared/components/ui/separator";
 import LOGO from "@/assets/logo.png";
 
-export default function Navbar() {
+export default function Navbar({ style }: { style?: string }) {
   return (
-    <nav className="p-4 flex justify-between shadow-md">
-      <div className="flex items-center gap-4">
+    <nav
+      className={`p-4 bg-background flex justify-between shadow-md ${style}`}
+    >
+      <NavLink to="/dashboard" className="flex items-center gap-4">
         <img
           src={LOGO}
           className="h-12 w-12 object-contain"
@@ -16,7 +19,7 @@ export default function Navbar() {
           </h1>
           <h3 className="text-lg text-[#8C8C98]">Main Portal</h3>
         </div>
-      </div>
+      </NavLink>
       <div className="flex items-center gap-5">
         <div>
           <p className="space-x-2">

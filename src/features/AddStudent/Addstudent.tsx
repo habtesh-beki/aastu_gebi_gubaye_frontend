@@ -9,14 +9,14 @@ import {
   
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
-import MultiSelect from "@/features/AddStudent/components/multicheck";
 import { useState } from "react";
+import MultiSelect from "./components/Multiselect";
 
 export default function AddStudent(){
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
     return (
-        <div className="flex flex-col h-2/4 w-2/5 border rounded-md">
+        <div className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl">
          <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
             <h2 className="text-xl text-bg_btn font-bold">Add new member</h2>
          </div>
@@ -139,7 +139,7 @@ export default function AddStudent(){
                   </div>
                 </div>
             </div>
-            <Button className="mt-4 mb-4 w-24 ml-2  bg-bg_btn hover:bg-blue-500">Add Student</Button>
+            <Button className="mt-4 mb-4 w-24 ml-80 bg-bg_btn hover:bg-blue-500">Add Student</Button>
          </ScrollArea>
         </div>
     )

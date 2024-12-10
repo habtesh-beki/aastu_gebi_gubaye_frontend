@@ -1,12 +1,15 @@
 import { LayoutDashboard, Shield, Users, Mail } from "lucide-react";
 import { Navbar } from "@/shared/components";
 import { Sidebar } from "@/shared/components";
+import Dashboard from "@/features/dashboard/Dashboard";
+// import AddStudent from "@/features/AddStudent/Addstudent";
+
 
 export default function HomePage() {
   return (
     <div className="bg-[#ECF2FF]">
       <Navbar style="fixed left-0 right-0 top-0" />
-      <main>
+      <main className="flex h-screen">
         <Sidebar
           items={[
             {
@@ -32,6 +35,8 @@ export default function HomePage() {
           ]}
           style="pt-32"
         />
+        <Dashboard/>
+        {/* <AddStudent/> */}
       </main>
     </div>
   );

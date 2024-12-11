@@ -43,7 +43,7 @@ const ServiceList : Service[] = [
 export default function Alehubewere(){
     return (
         <div className=" bg-white w-full rounded-lg p-6">
-           <h2 className="mt-4 text-3xl mb-4">አለሁ በወር መረጃ</h2>
+           <h2 className="mt-4 text-3xl mb-4">አለሁ በወሬ መረጃ</h2>
            <Separator />
            <ul className="grid grid-cols-4 gap-6 m-10">
            {ServiceList.map((service) =>  

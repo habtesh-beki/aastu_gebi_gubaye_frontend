@@ -8,17 +8,18 @@ import {
   } from "@/shared/components/ui/select"
   
 import { Input } from "../../shared/components/ui/input";
-import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
-import MultiSelect from "./components/Multiselect";
+import MultiSelect from "../AddStudent/components/Multiselect";
+import Footer from "./components/Footer";
 
-export default function AddStudent(){
+
+export default function UpdateStudent(){
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
     return (
         <div className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl">
          <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
-            <h2 className="text-xl text-bg_btn font-bold">Add new member</h2>
+            <h2 className="text-xl text-bg_btn font-bold">Update Student</h2>
          </div>
          <ScrollArea className="flex-grow border-1 bg-white border-red-500 border-solid pl-9 pr-7">
             <div className="flex items-center gap-3">
@@ -139,7 +140,7 @@ export default function AddStudent(){
                   </div>
                 </div>
             </div>
-            <Button className="mt-4 mb-4 w-24 ml-80 bg-bg_btn hover:bg-blue-500">Add Student</Button>
+            <Footer />
          </ScrollArea>
         </div>
     )

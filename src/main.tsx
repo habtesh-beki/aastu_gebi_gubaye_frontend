@@ -12,7 +12,7 @@ createRoot(document.getElementById("root")!).render(
         {routes.map(({ path, element }) => {
           return <Route path={path} element={element}></Route>;
         })}
-        <Route path="/dashboard" element={<App />}></Route>
+        <Route path="/" element={<App />}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>

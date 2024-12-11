@@ -1,10 +1,9 @@
-import HomePage from "@/pages/index";
-import LoginPage from "./pages/login";
+import HomePage from "./pages/index";
 
 function App() {
   return (
-    <LoginPage/>
-  // <HomePage />
+  <HomePage />
+
 )
 }
 

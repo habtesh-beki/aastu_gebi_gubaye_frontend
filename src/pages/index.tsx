@@ -1,13 +1,7 @@
 import { LayoutDashboard, Shield, Users, Mail } from "lucide-react";
 import { Navbar } from "@/shared/components";
 import { Sidebar } from "@/shared/components";
-import Warning from "@/features/Warning/Warning";
-import Filter from "@/features/Filter/Filter";
-// import Footer from "@/features/UpdateStudent/components/Footer";
-// import UpdateStudent from "@/features/UpdateStudent/Update";
-import DetailInfo from "@/features/DetailInfo/DetailInfo";
-import Dashboard from "@/features/dashboard/Dashboard";
-// import AddStudent from "@/features/AddStudent/Addstudent";
+import { Outlet } from "react-router";
 
 export default function HomePage() {
   return (
@@ -40,12 +34,7 @@ export default function HomePage() {
           ]}
           style="pt-32"
         />
-        {/* <Dashboard/> */}
-        {/* <AddStudent/> */}
-        {/* <DetailInfo /> */}
-        {/* <Warning /> */}
-        <Filter />
-        {/* <UpdateStudent /> */}
+        <Outlet />
       </main>
     </div>
   );

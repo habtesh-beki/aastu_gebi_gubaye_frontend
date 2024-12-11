@@ -2,6 +2,9 @@
 import { RouteObject, Navigate } from "react-router";
 import HomePage from "@/pages";
 import Dashboard from "./features/dashboard/Dashboard";
+import AddStudent from "./features/AddStudent/Addstudent";
+import Filter from "./features/Filter/Filter";
+import AddConfession from "./features/Confession/AddConfession/AddConfession";
 
 const routes: RouteObject[] = [
   {
@@ -10,19 +13,19 @@ const routes: RouteObject[] = [
   },
   {
     path: "/admins",
-    element: <HomePage />,
+    element: <AddStudent />,
   },
   {
     path: "/all-members",
-    element: <HomePage />,
+    element: <Filter />,
   },
   {
     path: "/message",
-    element: <HomePage />,
+    element: <Dashboard />,
   },
   {
     path: "/my-profile",
-    element: <HomePage />,
+    element: <AddConfession />,
   },
   //   catch all routes
   {

@@ -65,12 +65,12 @@
   }
 }
 
-/* @font-face {
+  @font-face {
   font-family: "Shiromeda";
   src: url("./assets/fonts/Shiromeda-Bold.ttf");
-}
+} 
 
-
+/*
  html {
   font-family: 'Shiromeda' !important;
 }  */

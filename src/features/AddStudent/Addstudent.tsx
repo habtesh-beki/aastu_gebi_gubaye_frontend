@@ -1,3 +1,5 @@
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import {
   Select,
@@ -12,11 +14,41 @@ import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
 import MultiSelect from "./components/Multiselect";
 
+type Inputs = {
+  first_name: string;
+  last_name: string;
+  confession_father: string;
+  gender: string;
+  student_id: string;
+  department: string;
+  service: string[];
+  registration_year: string;
+  password: string;
+  confession: string;
+  role: string;
+  phone_number1: number;
+  phone_number2: number;
+  email: string;
+};
+
 export default function AddStudent() {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
   return (
-    <div className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl ">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl "
+    >
       <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
         <h2 className="text-xl text-bg_btn font-bold">Add new member</h2>
       </div>
@@ -30,31 +62,43 @@ export default function AddStudent() {
             <label htmlFor="" className="text-[#7D807C]">
               First Name
             </label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("first_name")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Last Name
             </label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("last_name")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Babtismal Name
             </label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("confession_father")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Gender
             </label>
-            <Select>
-              <SelectTrigger className="focus:ring-blue-600">
+            <Select onValueChange={(value) => setValue("gender", value)}>
+              <SelectTrigger
+                {...register("gender")}
+                className="focus:ring-blue-600"
+              >
                 <SelectValue placeholder="Gender" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="light">Male</SelectItem>
-                <SelectItem value="dark">Female</SelectItem>
+                <SelectItem value="male">Male</SelectItem>
+                <SelectItem value="female">Female</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -62,14 +106,20 @@ export default function AddStudent() {
             <label htmlFor="" className="text-[#7D807C]">
               Student Id
             </label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("student_id")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Department
             </label>
-            <Select>
-              <SelectTrigger className="focus:ring-blue-600">
+            <Select onValueChange={(value) => setValue("department", value)}>
+              <SelectTrigger
+                {...register("department")}
+                className="focus:ring-blue-600"
+              >
                 <SelectValue placeholder="Department" />
               </SelectTrigger>
               <SelectContent>
@@ -88,13 +138,20 @@ export default function AddStudent() {
             <label htmlFor="" className="text-[#7D807C]">
               Year
             </label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("registration_year")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               password
             </label>
-            <Input type="password" className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("password")}
+              type="password"
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
@@ -114,23 +171,33 @@ export default function AddStudent() {
             <label htmlFor="" className="text-[#7D807C]">
               Serivce
             </label>
-            <MultiSelect
-              placeholder="Service"
-              options={[
-                { label: "Temehert", value: "Temehert" },
-                { label: "Bache", value: "Bache" },
-                { label: "muya", value: "muya" },
-              ]}
-              selectedOptions={selectedItems}
-              setSelectedOptions={setSelectedItems}
+            <Controller
+              name="service"
+              control={control}
+              render={({ field }) => (
+                <MultiSelect
+                  placeholder="Service"
+                  {...field}
+                  options={[
+                    { label: "Temehert", value: "Temehert" },
+                    { label: "Bache", value: "Bache" },
+                    { label: "muya", value: "muya" },
+                  ]}
+                  selectedOptions={selectedItems}
+                  setSelectedOptions={setSelectedItems}
+                />
+              )}
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Role
             </label>
-            <Select>
-              <SelectTrigger className="focus:ring-blue-600">
+            <Select onValueChange={(value) => setValue("role", value)}>
+              <SelectTrigger
+                {...register("role")}
+                className="focus:ring-blue-600"
+              >
                 <SelectValue placeholder="Role" />
               </SelectTrigger>
               <SelectContent>
@@ -145,6 +212,7 @@ export default function AddStudent() {
               confession
             </label>
             <Input
+              {...register("confession")}
               placeholder="Optional"
               className="focus-visible:ring-blue-600"
             />
@@ -161,6 +229,7 @@ export default function AddStudent() {
                 phone Number 1
               </label>
               <Input
+                {...register("phone_number1")}
                 placeholder="Optional"
                 className="focus-visible:ring-blue-600"
               />
@@ -170,6 +239,7 @@ export default function AddStudent() {
                 Phone Number 2
               </label>
               <Input
+                {...register("phone_number2")}
                 placeholder="Optional"
                 className="focus-visible:ring-blue-600"
               />
@@ -179,16 +249,20 @@ export default function AddStudent() {
                 Email
               </label>
               <Input
+                {...register("email")}
                 placeholder="Optional"
                 className="focus-visible:ring-blue-600"
               />
             </div>
           </div>
         </div>
-        <Button className="mt-4 mb-4 w-24 ml-80 bg-bg_btn hover:bg-blue-500">
+        <Button
+          type="submit"
+          className="mt-4 mb-4 w-24 ml-1/3 bg-bg_btn hover:bg-blue-500"
+        >
           Add Student
         </Button>
       </ScrollArea>
-    </div>
+    </form>
   );
 }

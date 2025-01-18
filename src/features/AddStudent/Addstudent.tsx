@@ -1,4 +1,5 @@
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import Mselect, { MultiValue, Options } from "react-select";
 
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import {
@@ -12,7 +13,6 @@ import {
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
-import MultiSelect from "./components/Multiselect";
 
 type Inputs = {
   first_name: string;
@@ -21,7 +21,8 @@ type Inputs = {
   gender: string;
   student_id: string;
   department: string;
-  service: string[];
+  service: MultiValue<{ value: string; label: string }>;
+  language: MultiValue<{ value: string; label: string }>;
   registration_year: string;
   password: string;
   confession: string;
@@ -30,6 +31,18 @@ type Inputs = {
   phone_number2: number;
   email: string;
 };
+
+const optionslanguage: Options<{ value: string; label: string }> = [
+  { value: "amharic", label: "Amharicc" },
+  { value: "afan_oromo", label: "Afan Oromo" },
+  { value: "tigrigna", label: "Tigrigna" },
+];
+
+const optionsService: Options<{ value: string; label: string }> = [
+  { value: "bach", label: "bach" },
+  { value: "temehert", label: "temehert" },
+  { value: "begena", label: "Begena" },
+];
 
 export default function AddStudent() {
   const {
@@ -67,6 +80,7 @@ export default function AddStudent() {
               className="focus-visible:ring-blue-600"
             />
           </div>
+
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Last Name
@@ -157,14 +171,21 @@ export default function AddStudent() {
             <label htmlFor="" className="text-[#7D807C]">
               Language
             </label>
-            <MultiSelect
-              placeholder="Language"
-              options={[
-                { label: "Amharic", value: "amharic" },
-                { label: "Afan Oromo", value: "afan oromo" },
-              ]}
-              selectedOptions={selectedItems}
-              setSelectedOptions={setSelectedItems}
+            <Controller
+              name="language"
+              control={control}
+              defaultValue={[]}
+              render={({ field }) => (
+                <Mselect
+                  {...field}
+                  defaultValue={[optionslanguage[1]]}
+                  isMulti
+                  name="language"
+                  options={optionslanguage}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                />
+              )}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -175,16 +196,14 @@ export default function AddStudent() {
               name="service"
               control={control}
               render={({ field }) => (
-                <MultiSelect
-                  placeholder="Service"
+                <Mselect
                   {...field}
-                  options={[
-                    { label: "Temehert", value: "Temehert" },
-                    { label: "Bache", value: "Bache" },
-                    { label: "muya", value: "muya" },
-                  ]}
-                  selectedOptions={selectedItems}
-                  setSelectedOptions={setSelectedItems}
+                  defaultValue={[optionslanguage[1]]}
+                  isMulti
+                  name="service"
+                  options={optionsService}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
                 />
               )}
             />

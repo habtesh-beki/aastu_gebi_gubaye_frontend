@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import Mselect, { MultiValue, Options } from "react-select";
 
@@ -12,30 +13,29 @@ import {
 
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
-import { useState } from "react";
+// import { useState } from "react";
 
 type Inputs = {
   first_name: string;
   last_name: string;
-  confession_father: string;
+  baptismal_name: string;
   gender: string;
   student_id: string;
   department: string;
   service: MultiValue<{ value: string; label: string }>;
-  language: MultiValue<{ value: string; label: string }>;
-  registration_year: string;
+  language: MultiValue<{ value: string }>;
+  current_year: string;
   password: string;
   confession: string;
   role: string;
-  phone_number1: number;
-  phone_number2: number;
+  phone_number: number;
   email: string;
 };
 
 const optionslanguage: Options<{ value: string; label: string }> = [
-  { value: "amharic", label: "Amharicc" },
-  { value: "afan_oromo", label: "Afan Oromo" },
-  { value: "tigrigna", label: "Tigrigna" },
+  { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
+  { value: "1049a5c8-4304-4a01-9c94-bc1dc2336764", label: "Afan Oromo" },
+  { value: "6ab72587-19de-4623-8285-a78e384af68e", label: "Tigrigna" },
 ];
 
 const optionsService: Options<{ value: string; label: string }> = [
@@ -50,12 +50,42 @@ export default function AddStudent() {
     handleSubmit,
     setValue,
     control,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm<Inputs>();
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  // const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    let language = data.language.map((lang) => lang.value);
+    let service = data.service.map((service) => service.value);
+    const studentData = { ...data, language, service };
+    // try {
+    //   await axios.post("http://127.0.0.1:3000/api/student", studentData, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.error("there is error", error);
+    // }
+
+    ////using fetch
+    // try {
+    //   const response = await fetch("http://127.0.0.1:3000/api/student", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(studentData),
+    //   });
+
+    //   const data = await response.json();
+    //   console.log("Server Response:", data);
+    // } catch (error) {
+    //   console.error("Error sending data:", error);
+    // }
+    console.log({ ...data, language, service });
+  };
 
   return (
     <form
@@ -95,7 +125,7 @@ export default function AddStudent() {
               Babtismal Name
             </label>
             <Input
-              {...register("confession_father")}
+              {...register("baptismal_name")}
               className="focus-visible:ring-blue-600"
             />
           </div>
@@ -137,7 +167,9 @@ export default function AddStudent() {
                 <SelectValue placeholder="Department" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="electrical">Electrical</SelectItem>
+                <SelectItem value="0f324b57-a834-4eef-a5cd-954fa30101e3">
+                  Electrical
+                </SelectItem>
                 <SelectItem value="Software">Software</SelectItem>
                 <SelectItem value="mechanical">Mechanical</SelectItem>
                 <SelectItem value="arch">Arch</SelectItem>
@@ -153,7 +185,7 @@ export default function AddStudent() {
               Year
             </label>
             <Input
-              {...register("registration_year")}
+              {...register("current_year")}
               className="focus-visible:ring-blue-600"
             />
           </div>
@@ -198,7 +230,7 @@ export default function AddStudent() {
               render={({ field }) => (
                 <Mselect
                   {...field}
-                  defaultValue={[optionslanguage[1]]}
+                  defaultValue={[optionsService[1]]}
                   isMulti
                   name="service"
                   options={optionsService}
@@ -248,21 +280,12 @@ export default function AddStudent() {
                 phone Number 1
               </label>
               <Input
-                {...register("phone_number1")}
+                {...register("phone_number")}
                 placeholder="Optional"
                 className="focus-visible:ring-blue-600"
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="" className="text-[#7D807C]">
-                Phone Number 2
-              </label>
-              <Input
-                {...register("phone_number2")}
-                placeholder="Optional"
-                className="focus-visible:ring-blue-600"
-              />
-            </div>
+
             <div className="flex flex-col gap-2">
               <label htmlFor="" className="text-[#7D807C]">
                 Email

@@ -1,3 +1,4 @@
+import Mselect, { MultiValue, Options } from "react-select";
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import {
   Select,
@@ -8,15 +9,58 @@ import {
 } from "@/shared/components/ui/select";
 
 import { Input } from "../../shared/components/ui/input";
-import { useState } from "react";
-import MultiSelect from "../AddStudent/components/Multiselect";
 import Footer from "./components/Footer";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+
+const optionslanguage: Options<{ value: string; label: string }> = [
+  { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
+  { value: "1049a5c8-4304-4a01-9c94-bc1dc2336764", label: "Afan Oromo" },
+  { value: "6ab72587-19de-4623-8285-a78e384af68e", label: "Tigrigna" },
+];
+
+const optionsService: Options<{ value: string; label: string }> = [
+  { value: "bach", label: "bach" },
+  { value: "temehert", label: "temehert" },
+  { value: "begena", label: "Begena" },
+];
+
+type Inputs = {
+  first_name: string;
+  last_name: string;
+  baptismal_name: string;
+  gender: string;
+  student_id: string;
+  department: string;
+  service: MultiValue<{ value: string; label: string }>;
+  language: MultiValue<{ value: string }>;
+  current_year: string;
+  password: string;
+  confession: string;
+  role: string;
+  phone_number: number;
+  email: string;
+};
 
 export default function UpdateStudent() {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const { register, handleSubmit, control, setValue } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const service = data.service.map((serev) => serev.value);
+    const language = data.language.map((lang) => lang.value);
+
+    const studentData = { ...data, service, language };
+
+    //  try{
+    //  const response = fetch()
+    //  }
+    console.log({ ...data, service, language });
+  };
 
   return (
-    <div className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl"
+    >
       <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
         <h2 className="text-xl text-bg_btn font-bold">Update Student</h2>
       </div>
@@ -30,36 +74,54 @@ export default function UpdateStudent() {
             <label htmlFor="" className="">
               First Name
             </label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("first_name")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Last Name</label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("last_name")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Babtismal Name</label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("baptismal_name")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Gender</label>
-            <Select>
-              <SelectTrigger className="focus:ring-blue-600">
+            <Select onValueChange={(value) => setValue("gender", value)}>
+              <SelectTrigger
+                {...register("gender")}
+                className="focus:ring-blue-600"
+              >
                 <SelectValue placeholder="Gender" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="light">Male</SelectItem>
-                <SelectItem value="dark">Female</SelectItem>
+                <SelectItem value="male">Male</SelectItem>
+                <SelectItem value="female">Female</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Student Id</label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("student_id")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Department</label>
-            <Select>
-              <SelectTrigger className="focus:ring-blue-600">
+            <Select onValueChange={(value) => setValue("department", value)}>
+              <SelectTrigger
+                {...register("department")}
+                className="focus:ring-blue-600"
+              >
                 <SelectValue placeholder="Department" />
               </SelectTrigger>
               <SelectContent>
@@ -76,41 +138,64 @@ export default function UpdateStudent() {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Year</label>
-            <Input className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("current_year")}
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">password</label>
-            <Input type="password" className="focus-visible:ring-blue-600" />
+            <Input
+              {...register("password")}
+              type="password"
+              className="focus-visible:ring-blue-600"
+            />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Language</label>
-            <MultiSelect
-              placeholder="Language"
-              options={[
-                { label: "Amharic", value: "amharic" },
-                { label: "Afan Oromo", value: "afan oromo" },
-              ]}
-              selectedOptions={selectedItems}
-              setSelectedOptions={setSelectedItems}
+            <Controller
+              name="language"
+              control={control}
+              defaultValue={[]}
+              render={({ field }) => (
+                <Mselect
+                  {...field}
+                  defaultValue={[optionslanguage[1]]}
+                  isMulti
+                  name="language"
+                  options={optionslanguage}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                />
+              )}
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Serivce</label>
-            <MultiSelect
-              placeholder="Service"
-              options={[
-                { label: "Temehert", value: "Temehert" },
-                { label: "Bache", value: "Bache" },
-                { label: "muya", value: "muya" },
-              ]}
-              selectedOptions={selectedItems}
-              setSelectedOptions={setSelectedItems}
+            <Controller
+              name="service"
+              control={control}
+              defaultValue={[]}
+              render={({ field }) => (
+                <Mselect
+                  {...field}
+                  defaultValue={[optionsService[1]]}
+                  isMulti
+                  name="service"
+                  options={optionsService}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                />
+              )}
             />
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="">Role</label>
-            <Select>
-              <SelectTrigger className="focus:ring-blue-600">
+            <Select onValueChange={(value) => setValue("role", value)}>
+              <SelectTrigger
+                {...register("role")}
+                className="focus:ring-blue-600"
+              >
                 <SelectValue placeholder="Role" />
               </SelectTrigger>
               <SelectContent>
@@ -123,6 +208,7 @@ export default function UpdateStudent() {
           <div className="flex flex-col gap-2">
             <label htmlFor="">Email</label>
             <Input
+              {...register("email")}
               type="email"
               placeholder="Optional"
               className="focus-visible:ring-blue-600"
@@ -137,17 +223,11 @@ export default function UpdateStudent() {
           <div className="grid grid-cols-2 gap-4 p-2">
             <div className="flex flex-col gap-2">
               <label htmlFor="" className="">
-                phone Number 1
+                phone Number
               </label>
               <Input
-                placeholder="Optional"
-                className="focus-visible:ring-blue-600"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="">Phone Number 2</label>
-              <Input
-                placeholder="Optional"
+                {...register("phone_number")}
+                // placeholder="Optional"
                 className="focus-visible:ring-blue-600"
               />
             </div>
@@ -155,6 +235,6 @@ export default function UpdateStudent() {
         </div>
         <Footer />
       </ScrollArea>
-    </div>
+    </form>
   );
 }

@@ -5,6 +5,7 @@ import Dashboard from "./features/dashboard/Dashboard";
 import AddStudent from "./features/AddStudent/Addstudent";
 import Filter from "./features/Filter/Filter";
 import AddConfession from "./features/Confession/AddConfession/AddConfession";
+import UpdateStudent from "./features/UpdateStudent/Update";
 
 const routes: RouteObject[] = [
   {
@@ -17,7 +18,7 @@ const routes: RouteObject[] = [
   },
   {
     path: "/all-members",
-    element: <Filter />,
+    element: <UpdateStudent />,
   },
   {
     path: "/message",

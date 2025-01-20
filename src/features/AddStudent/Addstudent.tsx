@@ -13,6 +13,7 @@ import {
 
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
+import { useEffect, useState } from "react";
 // import { useState } from "react";
 
 type Inputs = {
@@ -32,6 +33,12 @@ type Inputs = {
   email: string;
 };
 
+type ConfessionT = {
+  id: string;
+  first_name: string;
+  last_name: string;
+};
+
 const optionslanguage: Options<{ value: string; label: string }> = [
   { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
   { value: "1049a5c8-4304-4a01-9c94-bc1dc2336764", label: "Afan Oromo" },
@@ -46,6 +53,8 @@ const optionsService: Options<{ value: string; label: string }> = [
 ];
 
 export default function AddStudent() {
+  const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
+
   const {
     register,
     handleSubmit,
@@ -54,13 +63,31 @@ export default function AddStudent() {
     // watch,
     // formState: { errors },
   } = useForm<Inputs>();
-  // const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:3000/api/confession")
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        const confessionArray = jsonData.data.confession;
+        return confessionArray;
+      })
+      .then((data) => {
+        setConfession(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     let language = data.language.map((lang) => lang.value);
     let service = data.service.map((service) => service.value);
     const studentData = { ...data, language, service };
 
+    console.log(confessionObj);
     try {
       await axios.post("http://127.0.0.1:3000/api/student", studentData, {
         headers: {
@@ -70,7 +97,6 @@ export default function AddStudent() {
     } catch (error) {
       console.error("there is error", error);
     }
-
     console.log({ ...data, language, service });
   };
 
@@ -249,11 +275,25 @@ export default function AddStudent() {
             <label htmlFor="" className="text-[#7D807C]">
               confession
             </label>
-            <Input
-              {...register("confession")}
-              placeholder="Optional"
-              className="focus-visible:ring-blue-600"
-            />
+            <Select onValueChange={(value) => setValue("confession", value)}>
+              <SelectTrigger
+                {...register("confession")}
+                className="focus:ring-blue-600"
+              >
+                <SelectValue placeholder="confession" />
+              </SelectTrigger>
+              <SelectContent>
+                {confessionObj.length > 0 ? (
+                  confessionObj.map((conf) => (
+                    <SelectItem key={conf.id} value={conf.id}>
+                      {conf.first_name} {conf.last_name}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <p>No options available</p>
+                )}
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <div className="mt-5">

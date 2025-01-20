@@ -42,6 +42,7 @@ const optionsService: Options<{ value: string; label: string }> = [
   { value: "bach", label: "bach" },
   { value: "temehert", label: "temehert" },
   { value: "begena", label: "Begena" },
+  { value: "78f85e2b-0096-497c-b274-781c3fbc6330", label: "Mezemur" },
 ];
 
 export default function AddStudent() {
@@ -59,31 +60,17 @@ export default function AddStudent() {
     let language = data.language.map((lang) => lang.value);
     let service = data.service.map((service) => service.value);
     const studentData = { ...data, language, service };
-    // try {
-    //   await axios.post("http://127.0.0.1:3000/api/student", studentData, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    // } catch (error) {
-    //   console.error("there is error", error);
-    // }
 
-    ////using fetch
-    // try {
-    //   const response = await fetch("http://127.0.0.1:3000/api/student", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(studentData),
-    //   });
+    try {
+      await axios.post("http://127.0.0.1:3000/api/student", studentData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("there is error", error);
+    }
 
-    //   const data = await response.json();
-    //   console.log("Server Response:", data);
-    // } catch (error) {
-    //   console.error("Error sending data:", error);
-    // }
     console.log({ ...data, language, service });
   };
 

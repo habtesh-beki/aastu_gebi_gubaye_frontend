@@ -1,4 +1,7 @@
+import axios from "axios";
 import Mselect, { MultiValue, Options } from "react-select";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import {
   Select,
@@ -7,10 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-
 import { Input } from "../../shared/components/ui/input";
 import Footer from "./components/Footer";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 const optionslanguage: Options<{ value: string; label: string }> = [
   { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
@@ -44,15 +45,25 @@ type Inputs = {
 export default function UpdateStudent() {
   const { register, handleSubmit, control, setValue } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const service = data.service.map((serev) => serev.value);
     const language = data.language.map((lang) => lang.value);
 
     const studentData = { ...data, service, language };
+    try {
+      await axios.put(
+        "http://127.0.0.1:3000/api/student/f8a64198-f5fd-4d33-8f15-b514b4da20e5",
+        studentData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.error("there is error", error);
+    }
 
-    //  try{
-    //  const response = fetch()
-    //  }
     console.log({ ...data, service, language });
   };
 

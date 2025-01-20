@@ -1,3 +1,4 @@
+import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 
@@ -7,15 +8,27 @@ import { Input } from "@/shared/components/ui/input";
 type confessionI = {
   first_name: "string";
   last_name: "string";
-  phone: "string";
+  phoneNumber: "string";
 };
 
 export default function AddConfession() {
   const { register, handleSubmit } = useForm<confessionI>();
 
-  const onSubmit: SubmitHandler<confessionI> = (data) => {
+  const onSubmit: SubmitHandler<confessionI> = async (data) => {
+    try {
+      await axios.post("http://127.0.0.1:3000/api/confession", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("there is error", error);
+    }
+
     console.log(data);
   };
+
+  ////using fetch
 
   return (
     <form
@@ -50,7 +63,7 @@ export default function AddConfession() {
           <div className="flex flex-col gap-2">
             <label htmlFor="">Phone Number</label>
             <Input
-              {...register("phone")}
+              {...register("phoneNumber")}
               placeholder="Optional"
               className="focus-visible:ring-blue-600"
             />

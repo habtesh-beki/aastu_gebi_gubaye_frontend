@@ -6,7 +6,9 @@ export default function Footer() {
       <Button className="text-red-600 w-2/3  border" variant={"outline"}>
         Cancel
       </Button>
-      <Button className="bg-bg_btn hover:bg-blue-600 w-2/3">Update</Button>
+      <Button type="submit" className="bg-bg_btn hover:bg-blue-600 w-2/3">
+        Update
+      </Button>
     </div>
   );
 }

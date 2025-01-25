@@ -1,11 +1,9 @@
 // routes.ts
 import { RouteObject, Navigate } from "react-router";
-import HomePage from "@/pages";
 import Dashboard from "./features/dashboard/Dashboard";
 import AddStudent from "./features/AddStudent/Addstudent";
-import Filter from "./features/Filter/Filter";
 import AddConfession from "./features/Confession/AddConfession/AddConfession";
-import AllMembers from "@/features/AllMembers/AllMembers";
+import UpdateStudent from "./features/UpdateStudent/UpdateStudent";
 
 const routes: RouteObject[] = [
   {
@@ -18,7 +16,7 @@ const routes: RouteObject[] = [
   },
   {
     path: "/all-members",
-    element: <AllMembers />,
+    element: <UpdateStudent />,
   },
   {
     path: "/message",

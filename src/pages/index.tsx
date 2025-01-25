@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="bg-[#dbeafe]">
       {/*  */}
-      <Navbar style="fixed left-0 right-0 top-0" />
+      <Navbar style="fixed left-0 right-0 top-0 z-10" />
       <main className="flex h-screen">
         <Sidebar
           items={[
@@ -34,7 +34,9 @@ export default function HomePage() {
           ]}
           style="pt-32"
         />
-        <Outlet />
+        <div className="w-full overflow-y-scroll">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

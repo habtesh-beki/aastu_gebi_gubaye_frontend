@@ -47,7 +47,6 @@ export default function DetailInfo() {
           <p>Admin</p>
         </div>
       </div>
-
       <Footer />
     </div>
   );

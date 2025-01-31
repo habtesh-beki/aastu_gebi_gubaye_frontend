@@ -10,13 +10,11 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        {routes.map(({ path, element }) => {
-          return (
-            <Route path="/" element={<HomePage />}>
-              <Route path={path} element={element} />
-            </Route>
-          );
-        })}
+        <Route path="/" element={<HomePage />}>
+          {routes.map(({ path, element }) => {
+            return <Route path={path} element={element} />;
+          })}
+        </Route>
         <Route path="/" element={<App />}></Route>
       </Routes>
     </BrowserRouter>

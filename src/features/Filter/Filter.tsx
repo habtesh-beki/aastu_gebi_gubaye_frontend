@@ -5,14 +5,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 
-export default function Filter() {
+export default function FilterBody() {
   return (
     <div className="flex bg-white flex-col h-3/5 w-96 absolute top-1/4 left-1/3 border rounded-lg shadow-lg">
-      <Header />
       <ScrollArea className="flex flex-col gap-2 py-4 px-4">
         <div className="px-2 mb-3">
           <p className="mb-2">Department</p>
@@ -99,7 +97,6 @@ export default function Filter() {
           </Select>
         </div>
       </ScrollArea>
-      <Footer />
     </div>
   );
 }

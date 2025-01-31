@@ -1,4 +1,4 @@
-export default function Header() {
+export default function FilterHeader() {
   return (
     <div className="flex justify-between items-center pl-9 pr-9 p-4 h-20 bg-bg_login">
       <h2 className="text-xl text-bg_btn font-bold">Filter</h2>

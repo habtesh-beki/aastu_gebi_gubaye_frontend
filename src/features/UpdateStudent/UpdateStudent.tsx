@@ -23,6 +23,7 @@ const optionsService: Options<{ value: string; label: string }> = [
   { value: "bach", label: "bach" },
   { value: "temehert", label: "temehert" },
   { value: "begena", label: "Begena" },
+  { value: "mezmure", label: "Mezemur" },
 ];
 
 type Inputs = {

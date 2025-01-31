@@ -1,3 +1,3 @@
-export { default as DetailInfoHeader } from "./component/Header";
-export { default as DetailInfoBody } from "./component/Body";
-export { default as DetailInfoFooter } from "./component/Footer";
+export { default as DetailInfoHeader } from "./components/Header";
+export { default as DetailInfoBody } from "./components/Body";
+export { default as DetailInfoFooter } from "./components/Footer";

@@ -1,6 +1,6 @@
 import { Button } from "@/shared/components/ui/button";
 
-export default function Footer() {
+export default function FilterFooter() {
   return (
     <div className="flex justify-between items-center gap-2 pl-9 pr-9 p-4 h-20 bg-bg_login mt-auto">
       <Button className="text-red-600 w-2/3  border" variant={"outline"}>

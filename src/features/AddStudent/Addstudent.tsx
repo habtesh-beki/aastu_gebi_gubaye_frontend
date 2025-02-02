@@ -266,14 +266,14 @@ export default function AddStudent() {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
-              confession
+              confession father
             </label>
             <Select onValueChange={(value) => setValue("confession", value)}>
               <SelectTrigger
                 {...register("confession")}
                 className="focus:ring-blue-600"
               >
-                <SelectValue placeholder="confession" />
+                <SelectValue placeholder="confession father" />
               </SelectTrigger>
               <SelectContent>
                 {confessionObj.length > 0 ? (
@@ -297,11 +297,11 @@ export default function AddStudent() {
           <div className="grid grid-cols-2 gap-4 p-2">
             <div className="flex flex-col gap-2">
               <label htmlFor="" className="text-[#7D807C]">
-                phone Number 1
+                phone Number
               </label>
               <Input
                 {...register("phone_number")}
-                placeholder="Optional"
+                placeholder="phone number"
                 className="focus-visible:ring-blue-600"
               />
             </div>

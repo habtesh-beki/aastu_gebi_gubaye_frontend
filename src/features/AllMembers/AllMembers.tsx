@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Data, columns } from "@/features/AllMembers/components/columns";
-import { DataTable } from "@/features/AllMembers/components/DataTable";
+import { DataTable } from "@/shared/components/DataTable/DataTable";
 
 import { FilterMembers } from "./components/FilterMembers";
 

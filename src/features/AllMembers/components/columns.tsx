@@ -1,5 +1,4 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "@/shared/components/ui/button";
 import {
   Dialog,
   DialogTrigger,

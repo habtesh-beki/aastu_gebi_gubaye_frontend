@@ -16,7 +16,7 @@ import {
 export function FilterMembers() {
   return (
     <div className="bg-white p-6 rounded-lg space-y-8">
-      <h2 className="text-3xl">Admins</h2>
+      <h2 className="text-3xl">Students</h2>
       <div className="flex justify-between flex-col gap-6 min-[1100px]:gap-0 min-[1100px]:flex-row">
         <div className="w-full lg:w-[400px] bg-blue-50 rounded-lg px-4 py-4 has-[:focus]:ring-blue-700 has-[:focus]:ring-2 has-[:focus]:ring-offset-2 group flex items-center">
           <input

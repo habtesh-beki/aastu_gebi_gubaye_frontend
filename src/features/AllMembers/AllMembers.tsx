@@ -3,6 +3,8 @@ import { Data, columns } from "@/features/AllMembers/components/columns";
 import { DataTable } from "@/shared/components/DataTable/DataTable";
 
 import { FilterMembers } from "./components/FilterMembers";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
 
 function getData(): Data[] {
   const data = [];
@@ -33,6 +35,21 @@ function getData(): Data[] {
 }
 
 export default function AllMembers() {
+  //   const [data, setData] = useState(null)
+  //   const [loading, setLoading] = useState(true)
+  //   const [error ,setError] = useState()
+
+  //  useEffect(() => {
+  //   const apiURL = 'http://127.0.0.1:3000/api/student'
+
+  //   axios.get(apiURL).then((response) => {
+  //     setData(response)
+  //     setLoading(false)
+  //     setError('')
+  //   }).catch((err) => {
+  //     setError(err)
+  //   })
+  //  })
   const data = getData();
   console.log(data);
 

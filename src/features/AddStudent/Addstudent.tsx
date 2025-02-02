@@ -103,10 +103,10 @@ export default function AddStudent() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col h-2/4 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl "
+      className="flex flex-col rounded-lg overflow-hidden"
     >
       <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
-        <h2 className="text-xl text-bg_btn font-bold">Add new member</h2>
+        <h2 className="text-xl text-bg_btn font-bold">Add Student</h2>
       </div>
       <ScrollArea className="flex-grow border-1 bg-white border-red-500 border-solid pl-9 pr-7">
         <div className="flex items-center gap-3">
@@ -327,7 +327,7 @@ export default function AddStudent() {
         </div>
         <Button
           type="submit"
-          className="mt-4 mb-4 w-24 ml-1/3 bg-bg_btn hover:bg-blue-500"
+          className="my-4 bg-bg_btn hover:bg-blue-500"
         >
           Add Student
         </Button>

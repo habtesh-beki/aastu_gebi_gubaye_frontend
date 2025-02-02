@@ -55,14 +55,7 @@ const optionsService: Options<{ value: string; label: string }> = [
 export default function AddStudent() {
   const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    control,
-    // watch,
-    // formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit, setValue, control } = useForm<Inputs>();
 
   useEffect(() => {
     fetch("http://127.0.0.1:3000/api/confession")
@@ -83,8 +76,8 @@ export default function AddStudent() {
   }, []);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    let language = data.language.map((lang) => lang.value);
-    let service = data.service.map((service) => service.value);
+    const language = data.language.map((lang) => lang.value);
+    const service = data.service.map((service) => service.value);
     const studentData = { ...data, language, service };
 
     console.log(confessionObj);

@@ -16,7 +16,7 @@ const routes: RouteObject[] = [
   },
   {
     path: "/all-members",
-    element: <UpdateStudent />,
+    element: <AllMembers />,
   },
   {
     path: "/message",

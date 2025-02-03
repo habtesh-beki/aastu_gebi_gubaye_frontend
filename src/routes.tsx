@@ -7,26 +7,25 @@ import Admins from "@/features/Admins/Admins";
 
 const routes: RouteObject[] = [
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <Dashboard />,
   },
   {
-    path: "/admins",
+    path: "admins",
     element: <Admins />,
   },
   {
-    path: "/all-members",
+    path: "all-members",
     element: <AllMembers />,
   },
   {
-    path: "/message",
+    path: "message",
     element: <Dashboard />,
   },
   {
-    path: "/my-profile",
+    path: "my-profile",
     element: <AddConfession />,
   },
-  //   catch all routes
   {
     path: "*",
     element: <Navigate to="/dashboard" replace />,

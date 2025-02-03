@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import Mselect, { MultiValue, Options } from "react-select";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
@@ -51,21 +51,21 @@ export default function UpdateStudent() {
     const language = data.language.map((lang) => lang.value);
 
     const studentData = { ...data, service, language };
-    try {
-      await axios.put(
-        "http://127.0.0.1:3000/api/student/f8a64198-f5fd-4d33-8f15-b514b4da20e5",
-        studentData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    } catch (error) {
-      console.error("there is error", error);
-    }
+    // try {
+    //   await axios.put(
+    //     "http://127.0.0.1:3000/api/student/f8a64198-f5fd-4d33-8f15-b514b4da20e5",
+    //     studentData,
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   );
+    // } catch (error) {
+    //   console.error("there is error", error);
+    // }
 
-    console.log({ ...data, service, language });
+    console.log(studentData);
   };
 
   return (

@@ -14,7 +14,6 @@ import {
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useEffect, useState } from "react";
-// import { useState } from "react";
 
 type Inputs = {
   first_name: string;
@@ -29,7 +28,7 @@ type Inputs = {
   password: string;
   confession: string;
   role: string;
-  phone_number: number;
+  phone_number: string;
   email: string;
 };
 
@@ -54,7 +53,7 @@ const optionsService: Options<{ value: string; label: string }> = [
 
 export default function AddStudent() {
   const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
-
+  // const [error, setError] = useState();
   const { register, handleSubmit, setValue, control } = useForm<Inputs>();
 
   useEffect(() => {
@@ -72,6 +71,7 @@ export default function AddStudent() {
       })
       .catch((error) => {
         console.log(error);
+        // setError(error);
       });
   }, []);
 
@@ -88,7 +88,8 @@ export default function AddStudent() {
         },
       });
     } catch (error) {
-      console.error("there is error", error);
+      console.log(error);
+      // setError(error.response.data.message);
     }
     console.log({ ...data, language, service });
   };
@@ -266,14 +267,14 @@ export default function AddStudent() {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
-              confession
+              confession father
             </label>
             <Select onValueChange={(value) => setValue("confession", value)}>
               <SelectTrigger
                 {...register("confession")}
                 className="focus:ring-blue-600"
               >
-                <SelectValue placeholder="confession" />
+                <SelectValue placeholder="confession father" />
               </SelectTrigger>
               <SelectContent>
                 {confessionObj.length > 0 ? (
@@ -297,11 +298,11 @@ export default function AddStudent() {
           <div className="grid grid-cols-2 gap-4 p-2">
             <div className="flex flex-col gap-2">
               <label htmlFor="" className="text-[#7D807C]">
-                phone Number 1
+                phone Number
               </label>
               <Input
                 {...register("phone_number")}
-                placeholder="Optional"
+                placeholder="phone number"
                 className="focus-visible:ring-blue-600"
               />
             </div>
@@ -318,10 +319,10 @@ export default function AddStudent() {
             </div>
           </div>
         </div>
-        <Button
-          type="submit"
-          className="my-4 bg-bg_btn hover:bg-blue-500"
-        >
+        {/* {error && (
+          <p className="text-xl text-red-500">error occured `{error}`</p>
+        )} */}
+        <Button type="submit" className="my-4 bg-bg_btn hover:bg-blue-500">
           Add Student
         </Button>
       </ScrollArea>

@@ -21,8 +21,13 @@ export default function Login({
   const { register, handleSubmit } = useForm<Ilogin>();
   const onSubmit: SubmitHandler<Ilogin> = async (data) => {
     try {
-      await axios.post("http://127.0.0.1:3000/api/student/login", data);
+      const loginUser = await axios.post(
+        "http://127.0.0.1:3000/api/student/login",
+        data
+      );
       setError(false);
+      const token = loginUser.data.token;
+      localStorage.setItem("auth-token", token);
       console.log("success");
       setLogedIn(true);
       navigate("/home");

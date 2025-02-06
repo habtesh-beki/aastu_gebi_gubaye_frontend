@@ -22,7 +22,7 @@ export default function AddConfession() {
       await axios.post("http://127.0.0.1:3000/api/confession", data, {
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       setFatherAdd(true);

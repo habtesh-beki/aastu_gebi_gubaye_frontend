@@ -14,7 +14,6 @@ import {
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useEffect, useState } from "react";
-// import { useState } from "react";
 
 type Inputs = {
   first_name: string;
@@ -29,7 +28,7 @@ type Inputs = {
   password: string;
   confession: string;
   role: string;
-  phone_number: number;
+  phone_number: string;
   email: string;
 };
 
@@ -54,7 +53,8 @@ const optionsService: Options<{ value: string; label: string }> = [
 
 export default function AddStudent() {
   const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
-
+  const [studentAdd, setStudentAdd] = useState<boolean>(false);
+  const [error, setError] = useState();
   const { register, handleSubmit, setValue, control } = useForm<Inputs>();
 
   useEffect(() => {
@@ -72,6 +72,7 @@ export default function AddStudent() {
       })
       .catch((error) => {
         console.log(error);
+        // setError(error);
       });
   }, []);
 
@@ -79,16 +80,20 @@ export default function AddStudent() {
     const language = data.language.map((lang) => lang.value);
     const service = data.service.map((service) => service.value);
     const studentData = { ...data, language, service };
-
-    console.log(confessionObj);
+    const token = localStorage.getItem("auth-token");
+    console.log(token);
     try {
       await axios.post("http://127.0.0.1:3000/api/student", studentData, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
-    } catch (error) {
-      console.error("there is error", error);
+      setStudentAdd(true);
+    } catch (error: any) {
+      console.log(error);
+      alert("error occured");
+      setError(error.response.data.message);
     }
     console.log({ ...data, language, service });
   };
@@ -186,7 +191,28 @@ export default function AddStudent() {
               </SelectContent>
             </Select>
           </div>
+
           <div className="flex flex-col gap-2">
+            <label htmlFor="" className="text-[#7D807C]">
+              current year
+            </label>
+            <Select onValueChange={(value) => setValue("role", value)}>
+              <SelectTrigger
+                {...register("current_year")}
+                className="focus:ring-blue-600"
+              >
+                <SelectValue placeholder="current year" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="freshman">Freshman</SelectItem>
+                <SelectItem value="sophomore">sophomore</SelectItem>
+                <SelectItem value="junior">junior</SelectItem>
+                <SelectItem value="senior">senior</SelectItem>
+                <SelectItem value="last year">last year</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {/* <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               Year
             </label>
@@ -194,7 +220,7 @@ export default function AddStudent() {
               {...register("current_year")}
               className="focus-visible:ring-blue-600"
             />
-          </div>
+          </div> */}
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               password
@@ -266,14 +292,14 @@ export default function AddStudent() {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
-              confession
+              confession father
             </label>
             <Select onValueChange={(value) => setValue("confession", value)}>
               <SelectTrigger
                 {...register("confession")}
                 className="focus:ring-blue-600"
               >
-                <SelectValue placeholder="confession" />
+                <SelectValue placeholder="confession father" />
               </SelectTrigger>
               <SelectContent>
                 {confessionObj.length > 0 ? (
@@ -297,11 +323,11 @@ export default function AddStudent() {
           <div className="grid grid-cols-2 gap-4 p-2">
             <div className="flex flex-col gap-2">
               <label htmlFor="" className="text-[#7D807C]">
-                phone Number 1
+                phone Number
               </label>
               <Input
-                {...register("phone_number")}
-                placeholder="Optional"
+                {...register("phone_number", { pattern: /(\+251|0)[0-9]{9}/ })}
+                placeholder="phone number"
                 className="focus-visible:ring-blue-600"
               />
             </div>
@@ -318,10 +344,11 @@ export default function AddStudent() {
             </div>
           </div>
         </div>
-        <Button
-          type="submit"
-          className="my-4 bg-bg_btn hover:bg-blue-500"
-        >
+        {error && (
+          <p className="text-xl text-red-500">error occured `{error}`</p>
+        )}
+        {studentAdd && <p className="text-green-500">student registred</p>}
+        <Button type="submit" className="my-4 bg-bg_btn hover:bg-blue-500">
           Add Student
         </Button>
       </ScrollArea>

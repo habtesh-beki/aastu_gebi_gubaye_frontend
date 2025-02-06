@@ -12,6 +12,7 @@ import {
 } from "@/shared/components/ui/select";
 import { Input } from "../../shared/components/ui/input";
 import Footer from "./components/Footer";
+import axios from "axios";
 
 const optionslanguage: Options<{ value: string; label: string }> = [
   { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
@@ -27,43 +28,62 @@ const optionsService: Options<{ value: string; label: string }> = [
 ];
 
 type Inputs = {
-  first_name: string;
-  last_name: string;
-  baptismal_name: string;
-  gender: string;
-  student_id: string;
-  department: string;
-  service: MultiValue<{ value: string; label: string }>;
-  language: MultiValue<{ value: string }>;
-  current_year: string;
-  password: string;
-  confession: string;
-  role: string;
-  phone_number: number;
-  email: string;
+  first_name?: string;
+  last_name?: string;
+  baptismal_name?: string;
+  gender?: string;
+  student_id?: string;
+  department?: string;
+  service?: MultiValue<{ value: string; label: string }>;
+  language?: MultiValue<{ value: string }>;
+  current_year?: string;
+  password?: string;
+  confession?: string;
+  role?: string;
+  phone_number?: string;
+  email?: string;
 };
 
 export default function UpdateStudent() {
   const { register, handleSubmit, control, setValue } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const service = data.service.map((serev) => serev.value);
-    const language = data.language.map((lang) => lang.value);
+    const service = data.service?.map((serev) => serev.value);
+    const language = data.language?.map((lang) => lang.value);
 
     const studentData = { ...data, service, language };
-    // try {
-    //   await axios.put(
-    //     "http://127.0.0.1:3000/api/student/f8a64198-f5fd-4d33-8f15-b514b4da20e5",
-    //     studentData,
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   );
-    // } catch (error) {
-    //   console.error("there is error", error);
-    // }
+    const token = localStorage.getItem("auth-token");
+
+    const filteredData: Partial<Inputs> = Object.keys(studentData).reduce(
+      (acc, key) => {
+        const value = studentData[key as keyof Inputs];
+        if (value !== "" && value !== null && value !== undefined) {
+          if (Array.isArray(value) && value.length === 0) {
+            return acc;
+          }
+          acc[key as keyof Inputs] = value;
+        }
+        return acc;
+      },
+      {} as Partial<Inputs>
+    );
+
+    try {
+      await axios.put(
+        "http://127.0.0.1:3000/api/student/fd4f0539-8388-4fbf-b24e-bb7962b962ac",
+        filteredData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("student updated");
+    } catch (error) {
+      console.error("there is error", error);
+      alert("error occured");
+    }
 
     console.log(studentData);
   };
@@ -137,8 +157,12 @@ export default function UpdateStudent() {
                 <SelectValue placeholder="Department" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="electrical">Electrical</SelectItem>
-                <SelectItem value="Software">Software</SelectItem>
+                <SelectItem value="0f324b57-a834-4eef-a5cd-954fa30101e3">
+                  Electrical
+                </SelectItem>
+                <SelectItem value="4d43f617-70e4-4856-9f5d-811bba9663d5">
+                  Software
+                </SelectItem>
                 <SelectItem value="mechanical">Mechanical</SelectItem>
                 <SelectItem value="arch">Arch</SelectItem>
                 <SelectItem value="environmental">Environmental</SelectItem>

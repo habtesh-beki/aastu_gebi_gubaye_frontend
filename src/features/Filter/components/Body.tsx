@@ -1,4 +1,4 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import {
   Select,
   SelectContent,
@@ -9,9 +9,12 @@ import {
 
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 
+interface BodyProps {
+  register: UseFormRegister<Inputs>;
+  setValue: UseFormSetValue<Inputs>;
+}
+
 type Inputs = {
-  first_name: string;
-  last_name: string;
   gender: string;
   department: string;
   service: string;
@@ -19,12 +22,12 @@ type Inputs = {
   password: string;
   role: string;
   sort: string;
+  keyword: "";
+  page: "1";
+  year: "";
 };
 
-export default function Body() {
-  const { register, handleSubmit, setValue } = useForm<Inputs>({});
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {};
+export default function Body({ register, setValue }: BodyProps) {
   return (
     <ScrollArea className="flex flex-col gap-2">
       <div className="px-2 mb-4">

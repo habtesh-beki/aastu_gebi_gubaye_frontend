@@ -1,6 +1,9 @@
 import { Button } from "@/shared/components/ui/button";
+interface FooterProps {
+  onSubmit: () => void;
+}
 
-export default function Footer() {
+export default function Footer({ onSubmit }: FooterProps) {
   return (
     <div className="w-full flex justify-between items-center gap-2 bg-bg_login">
       <Button
@@ -9,7 +12,7 @@ export default function Footer() {
       >
         Cancel
       </Button>
-      <Button className="bg-bg_btn hover:bg-blue-600 w-2/3">
+      <Button onClick={onSubmit} className="bg-bg_btn hover:bg-blue-600 w-2/3">
         Apply Filter
       </Button>
     </div>

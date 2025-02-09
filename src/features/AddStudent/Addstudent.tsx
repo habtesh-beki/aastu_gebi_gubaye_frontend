@@ -212,15 +212,7 @@ export default function AddStudent() {
               </SelectContent>
             </Select>
           </div>
-          {/* <div className="flex flex-col gap-2">
-            <label htmlFor="" className="text-[#7D807C]">
-              Year
-            </label>
-            <Input
-              {...register("current_year")}
-              className="focus-visible:ring-blue-600"
-            />
-          </div> */}
+
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               password

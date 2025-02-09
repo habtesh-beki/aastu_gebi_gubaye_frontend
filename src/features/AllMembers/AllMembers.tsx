@@ -36,16 +36,7 @@ export default function AllMembers() {
       const options = {
         method: "GET",
         url: "http://localhost:3000/api/student",
-        params: {
-          page: "1",
-          department: "",
-          gender: "",
-          year: "",
-          role: "",
-          service: "",
-          sort: "first_name",
-          keyword: "",
-        },
+        params: fetchParams,
         headers: {
           Authorization: `Bearer ${token}`,
         },

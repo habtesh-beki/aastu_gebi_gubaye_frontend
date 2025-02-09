@@ -6,7 +6,6 @@ import { Outlet } from "react-router";
 export default function HomePage() {
   return (
     <div className="bg-[#dbeafe]">
-      {/*  */}
       <Navbar style="fixed left-0 right-0 top-0 z-10" />
       <main className="flex h-screen">
         <Sidebar
@@ -14,22 +13,22 @@ export default function HomePage() {
             {
               name: "Dashboard",
               icon: LayoutDashboard,
-              path: "/dashboard",
+              path: "dashboard",
             },
             {
               name: "Admins",
               icon: Shield,
-              path: "/admins",
+              path: "admins",
             },
             {
               name: "All members",
               icon: Users,
-              path: "/all-members",
+              path: "all-members",
             },
             {
               name: "Message",
               icon: Mail,
-              path: "/message",
+              path: "message",
             },
           ]}
           style="pt-32"

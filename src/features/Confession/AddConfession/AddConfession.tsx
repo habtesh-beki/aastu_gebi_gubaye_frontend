@@ -4,6 +4,7 @@ import { ScrollArea } from "@/shared/components/ui/scroll-area";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
+import { useState } from "react";
 
 type confessionI = {
   first_name: "string";
@@ -12,28 +13,31 @@ type confessionI = {
 };
 
 export default function AddConfession() {
+  const [fatherAdd, setFatherAdd] = useState<boolean>(false);
   const { register, handleSubmit } = useForm<confessionI>();
 
   const onSubmit: SubmitHandler<confessionI> = async (data) => {
+    const token = localStorage.getItem("auth-token");
     try {
       await axios.post("http://127.0.0.1:3000/api/confession", data, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
-    } catch (error) {
+      setFatherAdd(true);
+    } catch (error: any) {
       console.error("there is error", error);
+      alert(error);
     }
 
     console.log(data);
   };
 
-  ////using fetch
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col h-1/3 w-2/5 rounded-md absolute top-1/4 left-1/3 shadow-2xl"
+      className="flex flex-col rounded-lg overflow-hidden"
     >
       <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
         <h2 className="text-xl text-bg_btn font-bold">Add Confession Father</h2>
@@ -69,10 +73,8 @@ export default function AddConfession() {
             />
           </div>
         </div>
-        <Button
-          type="submit"
-          className="mt-4 mb-4  ml-80 bg-bg_btn hover:bg-blue-500"
-        >
+        {fatherAdd && <p className="text-green-500">confession father added</p>}
+        <Button type="submit" className="my-4 bg-bg_btn hover:bg-blue-500">
           Add Confession Father
         </Button>
       </ScrollArea>

@@ -1,32 +1,32 @@
 // routes.ts
 import { RouteObject, Navigate } from "react-router";
 import Dashboard from "./features/dashboard/Dashboard";
-import AddStudent from "./features/AddStudent/Addstudent";
 import AddConfession from "./features/Confession/AddConfession/AddConfession";
 import AllMembers from "@/features/AllMembers/AllMembers";
+import Admins from "@/features/Admins/Admins";
+import UpdateStudent from "./features/UpdateStudent/UpdateStudent";
 
 const routes: RouteObject[] = [
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <Dashboard />,
   },
   {
-    path: "/admins",
-    element: <AddStudent />,
+    path: "admins",
+    element: <Admins />,
   },
   {
-    path: "/all-members",
+    path: "all-members",
     element: <AllMembers />,
   },
   {
-    path: "/message",
-    element: <Dashboard />,
+    path: "message",
+    element: <UpdateStudent />,
   },
   {
-    path: "/my-profile",
+    path: "my-profile",
     element: <AddConfession />,
   },
-  //   catch all routes
   {
     path: "*",
     element: <Navigate to="/dashboard" replace />,

@@ -11,17 +11,18 @@ type Params = {
   keyword: string;
 };
 
-// Define the context type
 interface FetchParamsContextType {
   fetchParams: Params;
   setFetchParams: React.Dispatch<React.SetStateAction<Params>>;
 }
 
-// Create the context with default values
-const FetchParamsContext = createContext<FetchParamsContextType | undefined>(undefined);
+const FetchParamsContext = createContext<FetchParamsContextType | undefined>(
+  undefined
+);
 
-// Create the provider component
-export const FetchParamsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const FetchParamsProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [fetchParams, setFetchParams] = useState<Params>({
     page: "1",
     department: "",
@@ -29,7 +30,7 @@ export const FetchParamsProvider: React.FC<{ children: ReactNode }> = ({ childre
     year: "",
     role: "",
     service: "",
-    sort: "",
+    sort: "first_name",
     keyword: "",
   });
 
@@ -40,7 +41,6 @@ export const FetchParamsProvider: React.FC<{ children: ReactNode }> = ({ childre
   );
 };
 
-// Custom hook for consuming the context
 export const useFetchParams = () => {
   const context = useContext(FetchParamsContext);
   if (!context) {

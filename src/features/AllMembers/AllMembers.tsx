@@ -5,6 +5,8 @@ import { Data, columns } from "@/features/AllMembers/components/columns";
 import { DataTable } from "@/shared/components/DataTable/DataTable";
 import { FilterMembers } from "./components/FilterMembers";
 
+import { useFetchParams } from "./context/filterParamContex";
+
 type Student = {
   id: string;
   first_name: string;
@@ -25,6 +27,8 @@ type Student = {
 
 export default function AllMembers() {
   const [data, setData] = useState<Data[] | string>([]);
+  const { fetchParams } = useFetchParams();
+
   useEffect(() => {
     async function getData(): Promise<Data[] | string> {
       const token = localStorage.getItem("auth-token");
@@ -32,7 +36,7 @@ export default function AllMembers() {
       const options = {
         method: "GET",
         url: "http://localhost:3000/api/student",
-        params: { page: "1" },
+        params: fetchParams,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -71,7 +75,7 @@ export default function AllMembers() {
       return fetchedData;
     }
     getData();
-  }, []);
+  }, [fetchParams]);
 
   return (
     <div className="container mx-auto pt-32 pb-12 px-8 space-y-12">

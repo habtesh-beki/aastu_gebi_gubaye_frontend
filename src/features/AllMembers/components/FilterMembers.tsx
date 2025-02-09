@@ -29,13 +29,36 @@ type Inputs = {
 };
 
 export function FilterMembers() {
-  const { register, handleSubmit, setValue } = useForm<Inputs>({});
+  const { register, reset, handleSubmit, setValue } = useForm<Inputs>({});
   const { setFetchParams } = useFetchParams();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("Data", data);
     const sort = data.sort === "" ? "first_name" : data.sort;
     const paramData = { ...data, sort };
     setFetchParams(paramData);
+  };
+
+  const handleCancel = () => {
+    setFetchParams({
+      page: "1",
+      department: "",
+      gender: "",
+      year: "",
+      role: "",
+      service: "",
+      sort: "first_name",
+      keyword: "",
+    });
+    reset({
+      page: "1",
+      department: "",
+      gender: "",
+      year: "",
+      role: "",
+      service: "",
+      sort: "first_name",
+      keyword: "",
+    });
   };
 
   return (
@@ -68,7 +91,10 @@ export function FilterMembers() {
                 <FilterBody register={register} setValue={setValue} />
               </div>
               <DialogFooter className="px-6 py-4 bg-bg_login">
-                <FilterFooter onSubmit={handleSubmit(onSubmit)} />
+                <FilterFooter
+                  onSubmit={handleSubmit(onSubmit)}
+                  handleCancel={handleCancel}
+                />
               </DialogFooter>
             </DialogContent>
           </Dialog>

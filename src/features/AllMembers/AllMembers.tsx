@@ -1,62 +1,86 @@
-import { faker } from "@faker-js/faker";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import { Data, columns } from "@/features/AllMembers/components/columns";
 import { DataTable } from "@/shared/components/DataTable/DataTable";
-
 import { FilterMembers } from "./components/FilterMembers";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
 
-function getData(): Data[] {
-  const data = [];
-  const departments = [
-    "Electrical",
-    "Mechanical",
-    "Civil",
-    "Software",
-    "Electromechanical",
-  ];
-  const genders = ["M", "F"];
-
-  for (let i = 0; i < 20; i++) {
-    const entry = {
-      id: `ETS${faker.string.numeric(4)}/${faker.string.numeric(2)}`,
-      fullName: faker.person.fullName(),
-      gender: faker.helpers.arrayElement(genders),
-      phoneNumber: `09${faker.string.numeric(8)}`,
-      department: faker.helpers.arrayElement(departments),
-      service: `+${faker.string.numeric(1)}${faker.string.alpha({
-        length: 3,
-        casing: "upper",
-      })}+ ${faker.string.alpha({ length: 3, casing: "mixed" })}`,
-    };
-    data.push(entry);
-  }
-  return data;
-}
+type Student = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  baptismal_name: string;
+  gender: string;
+  student_id: string;
+  department: { id: string; department: string };
+  service: { id: string; name: string }[];
+  language: { id: string; name: string }[];
+  current_year: string;
+  password: string;
+  confession: string;
+  role: string;
+  phone_number: string;
+  email: string;
+};
 
 export default function AllMembers() {
-  //   const [data, setData] = useState(null)
-  //   const [loading, setLoading] = useState(true)
-  //   const [error ,setError] = useState()
+  const [data, setData] = useState<Data[] | string>([]);
+  useEffect(() => {
+    async function getData(): Promise<Data[] | string> {
+      const token = localStorage.getItem("auth-token");
 
-  //  useEffect(() => {
-  //   const apiURL = 'http://127.0.0.1:3000/api/student'
+      const options = {
+        method: "GET",
+        url: "http://localhost:3000/api/student",
+        params: { page: "1" },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-  //   axios.get(apiURL).then((response) => {
-  //     setData(response)
-  //     setLoading(false)
-  //     setError('')
-  //   }).catch((err) => {
-  //     setError(err)
-  //   })
-  //  })
-  const data = getData();
-  console.log(data);
+      let data: Student[];
+      let returnVal: Data[] | string;
+      async function fetchData(): Promise<Data[] | string> {
+        try {
+          data = (await axios.request(options)).data.data.students;
+          console.log("First: ", data);
+          returnVal = data.map((student: Student) => {
+            return {
+              id: student.student_id.toUpperCase(),
+              fullName: student.first_name + " " + student.last_name,
+              gender: student.gender,
+              phoneNumber: student.phone_number,
+              department: student.department.department,
+              role:
+                student.role === "std-user"
+                  ? "Standard User"
+                  : student.role === "admin"
+                  ? "Admin"
+                  : "Super Admin",
+            };
+          });
+        } catch (error) {
+          returnVal = `Error: ${error}`;
+        }
+        console.log("return value: ", returnVal);
+        return returnVal;
+      }
+      const fetchedData = await fetchData();
+      setData(fetchedData);
+      console.log("Fetched Data: ", fetchedData);
+      return fetchedData;
+    }
+    getData();
+  }, []);
 
   return (
     <div className="container mx-auto pt-32 pb-12 px-8 space-y-12">
       <FilterMembers />
-      <DataTable columns={columns} data={data} />
+      {typeof data === "string" ? (
+        "ERROR"
+      ) : (
+        <DataTable columns={columns} data={data} />
+      )}
     </div>
   );
 }

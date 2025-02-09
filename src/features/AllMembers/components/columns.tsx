@@ -18,7 +18,7 @@ export type Data = {
   gender: string;
   phoneNumber: string;
   department: string;
-  service: string;
+  role: string;
 };
 
 export const columns: ColumnDef<Data>[] = [
@@ -43,8 +43,8 @@ export const columns: ColumnDef<Data>[] = [
     header: "Department",
   },
   {
-    accessorKey: "service",
-    header: "Service",
+    accessorKey: "role",
+    header: "Role",
   },
   {
     id: "actions",

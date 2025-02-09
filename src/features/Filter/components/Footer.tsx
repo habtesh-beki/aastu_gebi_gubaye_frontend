@@ -1,12 +1,15 @@
 import { Button } from "@/shared/components/ui/button";
+
 interface FooterProps {
   onSubmit: () => void;
+  handleCancel: () => void;
 }
 
-export default function Footer({ onSubmit }: FooterProps) {
+export default function Footer({ onSubmit, handleCancel }: FooterProps) {
   return (
     <div className="w-full flex justify-between items-center gap-2 bg-bg_login">
       <Button
+        onClick={handleCancel}
         className="text-red-600 w-2/3 hover:bg-red-500 hover:text-white  border"
         variant={"outline"}
       >

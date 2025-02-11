@@ -14,6 +14,7 @@ import {
 import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useEffect, useState } from "react";
+import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
 
 type Inputs = {
   first_name: string;
@@ -80,7 +81,16 @@ export default function AddStudent() {
     const language = data.language.map((lang) => lang.value);
     const service = data.service.map((service) => service.value);
     const student_id = data.student_id.toLocaleUpperCase();
-    const studentData = { ...data, student_id, language, service };
+    const first_name = capitalizeFirstLetter(data.first_name);
+    const last_name = capitalizeFirstLetter(data.last_name);
+    const studentData = {
+      ...data,
+      first_name,
+      last_name,
+      student_id,
+      language,
+      service,
+    };
     const token = localStorage.getItem("auth-token");
     console.log(token);
     console.log(studentData);

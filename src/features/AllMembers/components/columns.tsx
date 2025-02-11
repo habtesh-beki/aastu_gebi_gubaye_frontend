@@ -14,13 +14,24 @@ import {
 
 export type Data = {
   id: string;
+  uid: string;
+  first_name: string;
+  last_name: string;
   fullName: string;
+  baptismal_name: string;
   gender: string;
-  phoneNumber: string;
+  student_id: string;
   department: string;
+  service: { id: string; name: string }[];
+  language: { id: string; name: string }[];
+  current_year: string;
+  password: string;
+  confession: string;
   role: string;
+  phone_number: string;
+  phoneNumber: string;
+  email: string;
 };
-
 export const columns: ColumnDef<Data>[] = [
   {
     accessorKey: "id",
@@ -48,18 +59,21 @@ export const columns: ColumnDef<Data>[] = [
   },
   {
     id: "actions",
-    cell: () => {
+    cell: (props) => {
       return (
         <Dialog>
           <DialogTrigger className="px-4 py-2 rounded-md bg-white border text-black border-blue-200 hover:text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-1">
-            More
+            More {(() => {
+              console.log(props.row.original);
+              return null;
+            })()}
           </DialogTrigger>
           <DialogContent className="p-0 overflow-hidden">
             <DialogHeader className="px-6 py-4 bg-bg_login">
               <DetailInfoHeader />
             </DialogHeader>
             <div className="p-6">
-              <DetailInfoBody />
+              <DetailInfoBody studentDetail={props.row.original} />
             </div>
             <DialogFooter className="px-6 py-4 bg-bg_login">
               <DetailInfoFooter />

@@ -59,6 +59,8 @@ export default function AllMembers() {
           console.log("First: ", data);
           returnVal = data.map((student: Student) => {
             return {
+              ...student,
+              uid: student.id,
               id: student.student_id.toUpperCase(),
               fullName: student.first_name + " " + student.last_name,
               gender: student.gender,
@@ -68,8 +70,8 @@ export default function AllMembers() {
                 student.role === "std-user"
                   ? "Standard User"
                   : student.role === "admin"
-                  ? "Admin"
-                  : "Super Admin",
+                    ? "Admin"
+                    : "Super Admin",
             };
           });
         } catch (error) {

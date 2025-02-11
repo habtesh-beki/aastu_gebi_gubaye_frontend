@@ -28,22 +28,37 @@ const optionsService: Options<{ value: string; label: string }> = [
 ];
 
 type Inputs = {
-  first_name?: string;
-  last_name?: string;
-  baptismal_name?: string;
-  gender?: string;
-  student_id?: string;
-  department?: string;
-  service?: MultiValue<{ value: string; label: string }>;
-  language?: MultiValue<{ value: string }>;
-  current_year?: string;
-  password?: string;
-  confession?: string;
-  role?: string;
-  phone_number?: string;
-  email?: string;
+  first_name: string;
+  last_name: string;
+  baptismal_name: string;
+  gender: string;
+  student_id: string;
+  department: string;
+  service: MultiValue<{ value: string; label: string }>;
+  language: MultiValue<{ value: string }>;
+  current_year: string;
+  password: string;
+  confession: string;
+  role: string;
+  phone_number: string;
+  email: string;
 };
-
+interface StudentFormData {
+  first_name: string;
+  last_name: string;
+  student_id: string;
+  gender: string;
+  baptismal_name: string;
+  phone_number: string;
+  language: string[];
+  department: string;
+  email: string;
+  service: string[];
+  role: string;
+  password: string;
+  current_year: string;
+  confession: string;
+}
 export default function UpdateStudent() {
   const { register, handleSubmit, control, setValue } = useForm<Inputs>();
 
@@ -54,19 +69,16 @@ export default function UpdateStudent() {
     const studentData = { ...data, service, language };
     const token = localStorage.getItem("auth-token");
 
-    const filteredData: Partial<Inputs> = Object.keys(studentData).reduce(
-      (acc, key) => {
-        const value = studentData[key as keyof Inputs];
-        if (value !== "" && value !== null && value !== undefined) {
-          if (Array.isArray(value) && value.length === 0) {
-            return acc;
-          }
-          acc[key as keyof Inputs] = value;
+    const filteredData = Object.keys(studentData).reduce((acc, key) => {
+      const value = studentData[key as keyof StudentFormData];
+      if (value !== "" && value !== null && value !== undefined) {
+        if (Array.isArray(value) && value.length === 0) {
+          return acc;
         }
-        return acc;
-      },
-      {} as Partial<Inputs>
-    );
+        acc[key as keyof StudentFormData] = { ...acc, value };
+      }
+      return acc;
+    }, {} as Partial<StudentFormData>);
 
     try {
       await axios.put(

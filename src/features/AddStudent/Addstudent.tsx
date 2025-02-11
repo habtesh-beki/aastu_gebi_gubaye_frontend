@@ -79,9 +79,11 @@ export default function AddStudent() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const language = data.language.map((lang) => lang.value);
     const service = data.service.map((service) => service.value);
-    const studentData = { ...data, language, service };
+    const student_id = data.student_id.toLocaleUpperCase();
+    const studentData = { ...data, student_id, language, service };
     const token = localStorage.getItem("auth-token");
     console.log(token);
+    console.log(studentData);
     try {
       await axios.post("http://127.0.0.1:3000/api/student", studentData, {
         headers: {
@@ -95,7 +97,6 @@ export default function AddStudent() {
       alert("error occured");
       setError(error.response.data.message);
     }
-    console.log({ ...data, language, service });
   };
 
   return (
@@ -191,12 +192,11 @@ export default function AddStudent() {
               </SelectContent>
             </Select>
           </div>
-
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               current year
             </label>
-            <Select onValueChange={(value) => setValue("role", value)}>
+            <Select onValueChange={(value) => setValue("current_year", value)}>
               <SelectTrigger
                 {...register("current_year")}
                 className="focus:ring-blue-600"
@@ -212,15 +212,7 @@ export default function AddStudent() {
               </SelectContent>
             </Select>
           </div>
-          {/* <div className="flex flex-col gap-2">
-            <label htmlFor="" className="text-[#7D807C]">
-              Year
-            </label>
-            <Input
-              {...register("current_year")}
-              className="focus-visible:ring-blue-600"
-            />
-          </div> */}
+
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#7D807C]">
               password

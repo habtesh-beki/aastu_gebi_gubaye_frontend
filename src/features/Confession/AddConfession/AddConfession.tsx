@@ -5,6 +5,7 @@ import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { useState } from "react";
+import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
 
 type confessionI = {
   first_name: "string";
@@ -17,14 +18,21 @@ export default function AddConfession() {
   const { register, handleSubmit } = useForm<confessionI>();
 
   const onSubmit: SubmitHandler<confessionI> = async (data) => {
+    const first_name = capitalizeFirstLetter(data.first_name);
+    const last_name = capitalizeFirstLetter(data.last_name);
+    const confessionFatherData = { ...data, first_name, last_name };
     const token = localStorage.getItem("auth-token");
     try {
-      await axios.post("http://127.0.0.1:3000/api/confession", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        "http://127.0.0.1:3000/api/confession",
+        confessionFatherData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setFatherAdd(true);
     } catch (error: any) {
       console.error("there is error", error);

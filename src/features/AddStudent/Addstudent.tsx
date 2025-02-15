@@ -15,6 +15,7 @@ import { Input } from "../../shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useEffect, useState } from "react";
 import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
+import { handleError } from "@/shared/utils/handleError";
 
 type Inputs = {
   first_name: string;
@@ -40,16 +41,16 @@ type ConfessionT = {
 };
 
 const optionslanguage: Options<{ value: string; label: string }> = [
-  { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
-  { value: "1049a5c8-4304-4a01-9c94-bc1dc2336764", label: "Afan Oromo" },
-  { value: "6ab72587-19de-4623-8285-a78e384af68e", label: "Tigrigna" },
+  { value: "ef7d3e8a-2034-4d03-816d-e694ac6d0e79", label: "Amharic" },
+  { value: "f36bbaa6-0dbe-4b83-b63d-47e70b8b0f70", label: "Afan Oromo" },
+  { value: "a144fe60-da72-466b-82ec-bd73e88c322e", label: "Tigrigna" },
 ];
 
 const optionsService: Options<{ value: string; label: string }> = [
-  { value: "bach", label: "bach" },
-  { value: "temehert", label: "temehert" },
+  { value: "f0481d3a-1a60-459e-9973-37e55529c1ca", label: "bach" },
+  { value: "b3df39d0-dee9-4824-81a0-1b1d92392f2c", label: "temehert" },
   { value: "begena", label: "Begena" },
-  { value: "78f85e2b-0096-497c-b274-781c3fbc6330", label: "Mezemur" },
+  { value: "43777475-7ff2-49fe-ac0f-71601b2a9b1f", label: "Mezemur" },
 ];
 
 export default function AddStudent() {
@@ -102,11 +103,14 @@ export default function AddStudent() {
         },
       });
       setStudentAdd(true);
+      alert("student added");
     } catch (error: any) {
-      console.log(error);
-      alert("error occured");
+      const errorMessage = handleError(error.response.data.message);
+      console.log(errorMessage);
+      alert(errorMessage);
       setError(error.response.data.message);
     }
+    console.log(studentData);
   };
 
   return (
@@ -114,8 +118,8 @@ export default function AddStudent() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col rounded-lg overflow-hidden"
     >
-      <div className="flex items-center pl-9 p-4 h-20 bg-bg_login">
-        <h2 className="text-xl text-bg_btn font-bold">Add Student</h2>
+      <div className="flex items-center pl-9 p-4 h-20 bg-bg_btn">
+        <h2 className="text-xl text-white font-bold">Add Student</h2>
       </div>
       <ScrollArea className="flex-grow border-1 bg-white border-red-500 border-solid pl-9 pr-7">
         <div className="flex items-center gap-3">
@@ -128,7 +132,7 @@ export default function AddStudent() {
               First Name
             </label>
             <Input
-              {...register("first_name")}
+              {...register("first_name", { required: true })}
               className="focus-visible:ring-blue-600"
             />
           </div>
@@ -138,7 +142,7 @@ export default function AddStudent() {
               Last Name
             </label>
             <Input
-              {...register("last_name")}
+              {...register("last_name", { required: true })}
               className="focus-visible:ring-blue-600"
             />
           </div>
@@ -157,7 +161,7 @@ export default function AddStudent() {
             </label>
             <Select onValueChange={(value) => setValue("gender", value)}>
               <SelectTrigger
-                {...register("gender")}
+                {...register("gender", { required: true })}
                 className="focus:ring-blue-600"
               >
                 <SelectValue placeholder="Gender" />
@@ -173,7 +177,7 @@ export default function AddStudent() {
               Student Id
             </label>
             <Input
-              {...register("student_id")}
+              {...register("student_id", { required: true })}
               className="focus-visible:ring-blue-600"
             />
           </div>
@@ -183,22 +187,37 @@ export default function AddStudent() {
             </label>
             <Select onValueChange={(value) => setValue("department", value)}>
               <SelectTrigger
-                {...register("department")}
+                {...register("department", { required: true })}
                 className="focus:ring-blue-600"
               >
                 <SelectValue placeholder="Department" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="0f324b57-a834-4eef-a5cd-954fa30101e3">
+                <SelectItem value="31e4ed2b-8a15-4b4d-852d-805f2d483b5c">
                   Electrical
                 </SelectItem>
-                <SelectItem value="Software">Software</SelectItem>
+                <SelectItem value="af0905fc-3ae8-4672-a9aa-314c054254e7">
+                  Software
+                </SelectItem>
+                <SelectItem value="607377c1-79a6-4d8d-aa88-e7c35e191d94">
+                  Electro
+                </SelectItem>
                 <SelectItem value="mechanical">Mechanical</SelectItem>
-                <SelectItem value="arch">Arch</SelectItem>
-                <SelectItem value="environmental">Environmental</SelectItem>
-                <SelectItem value="industrial">Industrial</SelectItem>
-                <SelectItem value="chemical">Chemical</SelectItem>
-                <SelectItem value="civil">Civil</SelectItem>
+                <SelectItem value="5642c05f-bd40-449a-9322-5817a3631877">
+                  Arch
+                </SelectItem>
+                <SelectItem value="5bf6384c-76e5-41a5-b183-4b0981b78033">
+                  Environmental
+                </SelectItem>
+                <SelectItem value="2464f17a-336d-462e-9ec6-2639567c4a9c">
+                  Food
+                </SelectItem>
+                <SelectItem value="3ccc6aeb-a0a0-44ce-b106-0f2de302975c">
+                  Chemical
+                </SelectItem>
+                <SelectItem value="f3c1d465-d69f-431f-9c80-7d19e1f7ed22">
+                  Civil
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -208,7 +227,7 @@ export default function AddStudent() {
             </label>
             <Select onValueChange={(value) => setValue("current_year", value)}>
               <SelectTrigger
-                {...register("current_year")}
+                {...register("current_year", { required: true })}
                 className="focus:ring-blue-600"
               >
                 <SelectValue placeholder="current year" />

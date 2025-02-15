@@ -13,6 +13,7 @@ import {
 import { Input } from "../../shared/components/ui/input";
 import Footer from "./components/Footer";
 import axios from "axios";
+import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
 
 const optionslanguage: Options<{ value: string; label: string }> = [
   { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
@@ -43,43 +44,36 @@ type Inputs = {
   phone_number: string;
   email: string;
 };
-interface StudentFormData {
-  first_name: string;
-  last_name: string;
-  student_id: string;
-  gender: string;
-  baptismal_name: string;
-  phone_number: string;
-  language: string[];
-  department: string;
-  email: string;
-  service: string[];
-  role: string;
-  password: string;
-  current_year: string;
-  confession: string;
-}
+
 export default function UpdateStudent() {
   const { register, handleSubmit, control, setValue } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const service = data.service?.map((serev) => serev.value);
     const language = data.language?.map((lang) => lang.value);
-
-    const studentData = { ...data, service, language };
+    const student_id = data.student_id.toLocaleUpperCase();
+    const first_name = capitalizeFirstLetter(data.first_name);
+    const last_name = capitalizeFirstLetter(data.last_name);
+    const studentData = {
+      ...data,
+      student_id,
+      first_name,
+      last_name,
+      service,
+      language,
+    };
     const token = localStorage.getItem("auth-token");
-
-    const filteredData = Object.keys(studentData).reduce((acc, key) => {
-      const value = studentData[key as keyof StudentFormData];
-      if (value !== "" && value !== null && value !== undefined) {
-        if (Array.isArray(value) && value.length === 0) {
-          return acc;
-        }
-        acc[key as keyof StudentFormData] = { ...acc, value };
-      }
-      return acc;
-    }, {} as Partial<StudentFormData>);
-
+    const filteredData = Object.fromEntries(
+      Object.entries(studentData).filter(([key, value]) => {
+        return (
+          value !== "" &&
+          value !== null &&
+          value !== undefined &&
+          !(Array.isArray(value) && value.length === 0)
+        );
+      })
+    );
+    console.log(filteredData);
     try {
       await axios.put(
         "http://127.0.0.1:3000/api/student/fd4f0539-8388-4fbf-b24e-bb7962b962ac",
@@ -96,8 +90,6 @@ export default function UpdateStudent() {
       console.error("there is error", error);
       alert("error occured");
     }
-
-    console.log(studentData);
   };
 
   return (

@@ -38,7 +38,7 @@ export default function useAddStudent() {
 
             try {
                 response = await axios.request(options);
-            } catch (error) {
+            } catch (error: any) {
                 console.log(error);
                 response = error.response.data.message;
             }

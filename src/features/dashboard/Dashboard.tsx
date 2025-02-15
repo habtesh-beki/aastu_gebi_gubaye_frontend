@@ -1,14 +1,19 @@
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
-import Alehubewere from "./components/AlehuBeWore";
-import Header from "./components/Header";
-import ServiceInfo from "./components/ServiceInfo";
+import { DepartmentChart } from "./components/departmentChart";
+import { YearChart } from "./components/currentYearChart";
+import { ServiceChart } from "./components/serviceChart";
+import { Header } from "./components/statesChart";
 
 export default function Dashboard() {
   return (
-    <ScrollArea className="flex flex-col mt-24 ml-10 mr-10 w-full ">
+    <ScrollArea className="mt-36 ml-10 mr-10 w-11/12 mb-5">
       <Header />
-      <ServiceInfo />
-      <Alehubewere />
+      <div className="grid grid-cols-2 gap-5">
+        <DepartmentChart />
+        <ServiceChart />
+      </div>
+
+      <YearChart />
     </ScrollArea>
   );
 }

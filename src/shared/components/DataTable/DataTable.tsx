@@ -29,6 +29,8 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   });
 
+  console.log(table);
+
   return (
     <div className="rounded-xl overflow-hidden">
       <Table>
@@ -66,6 +68,10 @@ export function DataTable<TData, TValue>({
                     key={cell.id}
                     className="border border-gray-200 first:border-none last:border-none"
                   >
+                    {(() => {
+                      console.log(cell);
+                      return null;
+                    })()}
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

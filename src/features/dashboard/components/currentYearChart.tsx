@@ -17,7 +17,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
-
 const chartConfig = {
   visitors: {
     label: "Visitors",

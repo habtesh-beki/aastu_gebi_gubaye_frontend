@@ -75,7 +75,7 @@ export default function AddConfession() {
           <div className="flex flex-col gap-2">
             <label htmlFor="">Phone Number</label>
             <Input
-              {...register("phoneNumber")}
+              {...register("phoneNumber", { required: true })}
               placeholder="Optional"
               className="focus-visible:ring-blue-600"
             />

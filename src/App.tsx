@@ -8,6 +8,7 @@ import { useState } from "react";
 
 function App() {
     const [logedIn, setLogedIn] = useState<boolean>(false);
+    // const [firstName, setFirstName] = useState('')
     const queryClient = new QueryClient();
     return (
         <QueryClientProvider client={queryClient}>

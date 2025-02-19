@@ -1,12 +1,4 @@
 import { ColumnDef } from "@tanstack/react-table";
-// import {
-//     Dialog,
-//     DialogTrigger,
-//     DialogContent,
-//     DialogHeader,
-//     DialogFooter,
-//     DialogDescription,
-// } from "@/shared/components/ui/dialog";
 import {
     DetailInfoHeader,
     DetailInfoBody,
@@ -19,14 +11,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTrigger,
-    InnerDialog,
-    InnerDialogClose,
-    InnerDialogContent,
-    InnerDialogDescription,
-    InnerDialogFooter,
-    InnerDialogHeader,
-    InnerDialogTitle,
-    InnerDialogTrigger,
 } from "@/components/ui/dialog";
 
 export type Data = {
@@ -78,24 +62,6 @@ export const columns: ColumnDef<Data>[] = [
         id: "actions",
         cell: (props) => {
             return (
-                // <Dialog>
-                //     <DialogTrigger className="px-4 py-2 rounded-md bg-white border text-black border-blue-200 hover:text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-1">
-                //         More
-                //     </DialogTrigger>
-                //     <DialogContent className="p-0 overflow-hidden">
-                //         <DialogHeader className="px-6 py-4 bg-bg_login">
-                //             <DetailInfoHeader />
-                //         </DialogHeader>
-                //         <div className="p-6">
-                //             <DetailInfoBody
-                //                 studentDetail={props.row.original}
-                //             />
-                //         </div>
-                //         <DialogFooter className="px-6 py-4 bg-bg_login">
-                //             <DetailInfoFooter />
-                //         </DialogFooter>
-                //     </DialogContent>
-                // </Dialog>
                 <Dialog>
                     <DialogTrigger className="px-4 py-2 rounded-md bg-white border text-black border-blue-200 hover:text-white hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-1">
                         More

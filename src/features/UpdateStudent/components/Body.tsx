@@ -142,11 +142,30 @@ export default function Body({
                     </Select>
                 </div>
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="">Year</label>
-                    <Input
-                        {...register("current_year")}
-                        className="focus-visible:ring-blue-600"
-                    />
+                    <label htmlFor="" className="text-[#7D807C]">
+                        current year
+                    </label>
+                    <Select
+                        onValueChange={(value) =>
+                            setValue("current_year", value)
+                        }
+                    >
+                        <SelectTrigger
+                            {...register("current_year", {
+                                required: true,
+                            })}
+                            className="focus:ring-blue-600"
+                        >
+                            <SelectValue placeholder="current year" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="freshman">Freshman</SelectItem>
+                            <SelectItem value="sophomore">sophomore</SelectItem>
+                            <SelectItem value="junior">junior</SelectItem>
+                            <SelectItem value="senior">senior</SelectItem>
+                            <SelectItem value="lastyear">last year</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="">password</label>

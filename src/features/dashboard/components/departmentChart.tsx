@@ -36,28 +36,48 @@ export function DepartmentChart() {
             const chartDataTemp = [
                 {
                     department: "Electrical",
-                    male: processDepart.Electrical.male,
-                    female: processDepart.Electrical.female,
+                    male: processDepart.Electrical?.male
+                        ? processDepart.Electrical.male
+                        : 0,
+                    female: processDepart.Electrical?.female
+                        ? processDepart.Electrical.female
+                        : 0,
                 },
                 {
                     department: "Software",
-                    male: processDepart.Software.male,
-                    female: processDepart.Software.female,
+                    male: processDepart.Software?.male
+                        ? processDepart.Software.male
+                        : 0,
+                    female: processDepart.Software?.female
+                        ? processDepart.Software.female
+                        : 0,
                 },
                 {
                     department: "Arch",
-                    male: processDepart.Chemical.male,
-                    female: processDepart.Chemical.female,
+                    male: processDepart.Chemical?.male
+                        ? processDepart.Chemical.male
+                        : 0,
+                    female: processDepart.Chemical?.female
+                        ? processDepart.Chemical.female
+                        : 0,
                 },
                 {
                     department: "Electro",
-                    male: processDepart.Environmental.male,
-                    female: processDepart.Environmental.female,
+                    male: processDepart.Environmental?.male
+                        ? processDepart.Environmental.male
+                        : 0,
+                    female: processDepart.Environmental?.female
+                        ? processDepart.Environmental.female
+                        : 0,
                 },
                 {
                     department: "Civil",
-                    male: processDepart.Civil.male,
-                    female: processDepart.Civil.female,
+                    male: processDepart.Civil?.male
+                        ? processDepart.Civil?.male
+                        : 0,
+                    female: processDepart.Civil?.female
+                        ? processDepart.Civil.female
+                        : 0,
                 },
                 { department: "Indestrial", male: 73, female: 190 },
                 { department: "Food", male: 209, female: 130 },

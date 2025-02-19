@@ -102,7 +102,7 @@ export default function Footer({ studentId }: { studentId: string }) {
             </Dialog>
 
             <Dialog>
-                <DialogTrigger className="bg-bg_btn hover:bg-blue-600 w-1/2 p-2 rounded-md">
+                <DialogTrigger className="bg-bg_btn hover:bg-blue-600 w-1/2 p-2 text-white rounded-md">
                     Edit
                 </DialogTrigger>
                 <DialogContent className="flex flex-col w-3/4 h-2/3 rounded-md absolute shadow-2xl p-0">

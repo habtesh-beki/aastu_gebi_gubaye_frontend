@@ -1,30 +1,34 @@
 import { ProcessData } from "@/shared/utils/processData";
-
-let studentValue = 0;
-let serviceStudent = 0;
-const processStudentData = async () => {
-    const Students = Object.values((await ProcessData()).byCurrentYear);
-    const StudentOnService = Object.values((await ProcessData()).byService);
-    const serviceValue = StudentOnService.reduce(
-        (acc, cur) => acc + cur.total,
-        0
-    );
-    const value = Students.reduce((acc, cur) => acc + cur.total, 0);
-    console.log(value);
-    studentValue = value;
-    serviceStudent = serviceValue;
-};
-processStudentData();
+import { useState } from "react";
 
 export function Header() {
+    const [isLoading, setIsLoding] = useState(true);
+    const [studentValue, setStudentValue] = useState<number>();
+    const [serviceStudent, setServiceStudent] = useState<number>();
+
+    const processStudentData = async () => {
+        const Students = Object.values((await ProcessData()).byCurrentYear);
+        const StudentOnService = Object.values((await ProcessData()).byService);
+        const serviceValue = StudentOnService.reduce(
+            (acc, cur) => acc + cur.total,
+            0
+        );
+        const value = Students.reduce((acc, cur) => acc + cur.total, 0);
+        console.log(value);
+        setStudentValue(value);
+        setServiceStudent(serviceValue);
+        setIsLoding(false);
+    };
+    processStudentData();
+
     const headerData = [
         {
             title: "Total Student",
-            value: studentValue,
+            value: isLoading ? "_" : studentValue,
         },
         {
             title: "Total students joined service",
-            value: serviceStudent,
+            value: isLoading ? "_" : serviceStudent,
         },
         {
             title: "Total Service",

@@ -77,6 +77,7 @@ export default function Footer({ studentId }: { studentId: string }) {
                     },
                 }
             );
+            console.log(filteredData);
             alert("student updated");
         } catch (error) {
             console.error("there is error", error);

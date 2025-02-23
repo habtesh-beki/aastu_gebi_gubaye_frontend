@@ -16,16 +16,16 @@ import {
 import { Input } from "../../../shared/components/ui/input";
 
 const optionslanguage: Options<{ value: string; label: string }> = [
-    { value: "2d4e2350-a78c-4f24-ae01-e56d3d22e5d9", label: "Amharic" },
-    { value: "1049a5c8-4304-4a01-9c94-bc1dc2336764", label: "Afan Oromo" },
-    { value: "6ab72587-19de-4623-8285-a78e384af68e", label: "Tigrigna" },
+    { value: "ef7d3e8a-2034-4d03-816d-e694ac6d0e79", label: "Amharic" },
+    { value: "f36bbaa6-0dbe-4b83-b63d-47e70b8b0f70", label: "Afan Oromo" },
+    { value: "a144fe60-da72-466b-82ec-bd73e88c322e", label: "Tigrigna" },
 ];
 
 const optionsService: Options<{ value: string; label: string }> = [
-    { value: "bach", label: "bach" },
-    { value: "temehert", label: "temehert" },
-    { value: "begena", label: "Begena" },
-    { value: "mezmure", label: "Mezemur" },
+    { value: "f0481d3a-1a60-459e-9973-37e55529c1ca", label: "bach" },
+    { value: "b3df39d0-dee9-4824-81a0-1b1d92392f2c", label: "temehert" },
+    { value: "", label: "Begena" },
+    { value: "43777475-7ff2-49fe-ac0f-71601b2a9b1f", label: "Mezemur" },
 ];
 
 type Inputs = {
@@ -151,9 +151,7 @@ export default function Body({
                         }
                     >
                         <SelectTrigger
-                            {...register("current_year", {
-                                required: true,
-                            })}
+                            {...register("current_year")}
                             className="focus:ring-blue-600"
                         >
                             <SelectValue placeholder="current year" />

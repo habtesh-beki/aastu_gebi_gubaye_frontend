@@ -44,14 +44,23 @@ export default function Body({ register, setValue }: BodyProps) {
                     <SelectContent>
                         <SelectItem value="Electrical">Electrical</SelectItem>
                         <SelectItem value="Software">Software</SelectItem>
-                        <SelectItem value="mechanical">Mechanical</SelectItem>
-                        <SelectItem value="arch">Arch</SelectItem>
-                        <SelectItem value="environmental">
+                        <SelectItem value="Mechanical">Mechanical</SelectItem>
+                        <SelectItem value="Archticture">Arch</SelectItem>
+                        <SelectItem value="Environmental">
                             Environmental
                         </SelectItem>
-                        <SelectItem value="industrial">Industrial</SelectItem>
-                        <SelectItem value="chemical">Chemical</SelectItem>
-                        <SelectItem value="civil">Civil</SelectItem>
+                        <SelectItem value="Industrial">Industrial</SelectItem>
+                        <SelectItem value="Chemical">Chemical</SelectItem>
+                        <SelectItem value="Civil">Civil</SelectItem>
+                        <SelectItem value="ElectroMechanical">
+                            Electro
+                        </SelectItem>
+                        <SelectItem value="Food">Food</SelectItem>
+                        <SelectItem value="Biotechnology">
+                            Biotechnology
+                        </SelectItem>
+                        <SelectItem value="Geology">Geology</SelectItem>
+                        <SelectItem value="Mining">Minig</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -116,9 +125,16 @@ export default function Body({ register, setValue }: BodyProps) {
                         <SelectValue placeholder="Service" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="temehert">temehert</SelectItem>
-                        <SelectItem value="bache">Bache</SelectItem>
-                        <SelectItem value="mezemur">Mezemur</SelectItem>
+                        <SelectItem value="Timihert">temehert</SelectItem>
+                        <SelectItem value="Bache">Bache</SelectItem>
+                        <SelectItem value="Mezemur">Mezemur</SelectItem>
+                        <SelectItem value="Plan">Plan</SelectItem>
+                        <SelectItem value="Muya">Muya</SelectItem>
+                        <SelectItem value="Audit">Audit</SelectItem>
+                        <SelectItem value="Abalat">Abalat</SelectItem>
+                        <SelectItem value="Hisab">Hisab</SelectItem>
+                        <SelectItem value="Lemat">Lemat</SelectItem>
+                        <SelectItem value="Language">Languge</SelectItem>
                     </SelectContent>
                 </Select>
             </div>

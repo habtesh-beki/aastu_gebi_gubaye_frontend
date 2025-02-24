@@ -47,10 +47,16 @@ const optionslanguage: Options<{ value: string; label: string }> = [
 ];
 
 const optionsService: Options<{ value: string; label: string }> = [
-    { value: "f0481d3a-1a60-459e-9973-37e55529c1ca", label: "bach" },
-    { value: "b3df39d0-dee9-4824-81a0-1b1d92392f2c", label: "temehert" },
-    { value: "begena", label: "Begena" },
     { value: "43777475-7ff2-49fe-ac0f-71601b2a9b1f", label: "Mezemur" },
+    { value: "b3df39d0-dee9-4824-81a0-1b1d92392f2c", label: "Timhirt" },
+    { value: "fb857962-a705-4c5e-948e-778d23cd588c", label: "Muya" },
+    { value: "f0481d3a-1a60-459e-9973-37e55529c1ca", label: "Bache" },
+    { value: "e05a9b3a-5142-4f65-88b6-00f85e8856cd", label: "Plan" },
+    { value: "34262273-5155-4bb9-8753-1340a600f4ee", label: "Audit" },
+    { value: "790cb7e1-48f7-445a-923b-7266463f32f3", label: "Abalat" },
+    { value: "7fe8b2ff-299b-4005-8f79-447abd3b3af1", label: "Hisab" },
+    { value: "e59ea122-c91f-41fe-8d7e-e1fa7fe388de", label: "Lemat" },
+    { value: "f53edf17-42ce-4855-b34c-917f6726b44d", label: "language" },
 ];
 
 export default function AddStudent() {
@@ -208,9 +214,6 @@ export default function AddStudent() {
                                 <SelectItem value="607377c1-79a6-4d8d-aa88-e7c35e191d94">
                                     Electro
                                 </SelectItem>
-                                <SelectItem value="mechanical">
-                                    Mechanical
-                                </SelectItem>
                                 <SelectItem value="5642c05f-bd40-449a-9322-5817a3631877">
                                     Arch
                                 </SelectItem>
@@ -225,6 +228,21 @@ export default function AddStudent() {
                                 </SelectItem>
                                 <SelectItem value="f3c1d465-d69f-431f-9c80-7d19e1f7ed22">
                                     Civil
+                                </SelectItem>
+                                <SelectItem value="588cbae8-868c-45b6-9ac7-376013b0e2e9">
+                                    Mechanical
+                                </SelectItem>
+                                <SelectItem value="1d371b26-b1af-4268-a1c8-615edd124d41">
+                                    Biotechnology
+                                </SelectItem>
+                                <SelectItem value="93442573-6802-4c63-ac16-b15c9f132499">
+                                    Geology
+                                </SelectItem>
+                                <SelectItem value="690d7d7c-2ffc-4cd8-99c8-9aaff1d4c563">
+                                    Industrial
+                                </SelectItem>
+                                <SelectItem value="c03631a1-2f69-42b6-8ee1-0ba439507f10">
+                                    Mining
                                 </SelectItem>
                             </SelectContent>
                         </Select>
@@ -400,11 +418,11 @@ export default function AddStudent() {
                         </div>
                     </div>
                 </div>
-                {error && (
+                {/* {error && (
                     <p className="text-xl text-red-500">
                         error occured `{error}`
                     </p>
-                )}
+                )} */}
                 {studentAdd && (
                     <p className="text-green-500">student registred</p>
                 )}

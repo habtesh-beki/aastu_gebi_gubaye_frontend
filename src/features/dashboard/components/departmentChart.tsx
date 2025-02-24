@@ -53,7 +53,7 @@ export function DepartmentChart() {
                         : 0,
                 },
                 {
-                    department: "Arch",
+                    department: "Chemical",
                     male: processDepart.Chemical?.male
                         ? processDepart.Chemical.male
                         : 0,
@@ -62,7 +62,7 @@ export function DepartmentChart() {
                         : 0,
                 },
                 {
-                    department: "Electro",
+                    department: "Environmental",
                     male: processDepart.Environmental?.male
                         ? processDepart.Environmental.male
                         : 0,
@@ -79,10 +79,78 @@ export function DepartmentChart() {
                         ? processDepart.Civil.female
                         : 0,
                 },
-                { department: "Indestrial", male: 73, female: 190 },
-                { department: "Food", male: 209, female: 130 },
-                { department: "Chemical", male: 214, female: 140 },
-                { department: "Mechanical", male: 214, female: 140 },
+                {
+                    department: "Electromechanical",
+                    male: processDepart.ElectroMechanical?.male
+                        ? processDepart.ElectroMechanical?.male
+                        : 0,
+                    female: processDepart.ElectroMechanical?.female
+                        ? processDepart.ElectroMechanical?.female
+                        : 0,
+                },
+                {
+                    department: "Food",
+                    male: processDepart.Food?.male
+                        ? processDepart.Food?.male
+                        : 0,
+                    female: processDepart.Food?.female
+                        ? processDepart.Food?.female
+                        : 0,
+                },
+                {
+                    department: "Architectural",
+                    male: processDepart.Archticture?.male
+                        ? processDepart.Archticture?.male
+                        : 0,
+                    female: processDepart.Archticture?.female
+                        ? processDepart.Archticture?.female
+                        : 0,
+                },
+                {
+                    department: "Mechanical",
+                    male: processDepart.Mechanical?.male
+                        ? processDepart.Mechanical?.male
+                        : 0,
+                    female: processDepart.Mechanical?.female
+                        ? processDepart.Mechanical?.female
+                        : 0,
+                },
+                {
+                    department: "Indestrial",
+                    male: processDepart.Industrial?.male
+                        ? processDepart.Industrial?.male
+                        : 0,
+                    female: processDepart.Industrial?.female
+                        ? processDepart.Industrial?.female
+                        : 0,
+                },
+                {
+                    department: "Biotechnology",
+                    male: processDepart.Biotechnology?.male
+                        ? processDepart.Biotechnology?.male
+                        : 0,
+                    female: processDepart.Biotechnology?.female
+                        ? processDepart.Biotechnology?.female
+                        : 0,
+                },
+                {
+                    department: "Geology",
+                    male: processDepart.Geology?.male
+                        ? processDepart.Geology?.male
+                        : 0,
+                    female: processDepart.Geology?.female
+                        ? processDepart.Geology?.female
+                        : 0,
+                },
+                {
+                    department: "Mining",
+                    male: processDepart.Mining?.male
+                        ? processDepart.Mining?.male
+                        : 0,
+                    female: processDepart.Mining?.female
+                        ? processDepart.Mining?.female
+                        : 0,
+                },
             ];
             console.log("FETCH IS CALLED");
             setChartData(chartDataTemp);
@@ -104,7 +172,7 @@ export function DepartmentChart() {
                         tickLine={false}
                         tickMargin={10}
                         axisLine={false}
-                        tickFormatter={(value) => value.slice(0, 8)}
+                        tickFormatter={(value) => value.slice(0, 4)}
                     />
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <Bar dataKey="male" fill="var(--color-male)" radius={4} />

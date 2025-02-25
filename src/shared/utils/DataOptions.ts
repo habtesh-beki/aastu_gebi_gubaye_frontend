@@ -3,13 +3,13 @@ type DepartmentI = {
     value: string;
     label: string;
 };
-//language options
+
 export const optionslanguage: Options<{ value: string; label: string }> = [
     { value: "ef7d3e8a-2034-4d03-816d-e694ac6d0e79", label: "Amharic" },
     { value: "f36bbaa6-0dbe-4b83-b63d-47e70b8b0f70", label: "Afan Oromo" },
     { value: "a144fe60-da72-466b-82ec-bd73e88c322e", label: "Tigrigna" },
 ];
-///service options
+
 export const optionsService: Options<{ value: string; label: string }> = [
     { value: "43777475-7ff2-49fe-ac0f-71601b2a9b1f", label: "Mezemur" },
     { value: "b3df39d0-dee9-4824-81a0-1b1d92392f2c", label: "Timhirt" },
@@ -22,7 +22,7 @@ export const optionsService: Options<{ value: string; label: string }> = [
     { value: "e59ea122-c91f-41fe-8d7e-e1fa7fe388de", label: "Lemat" },
     { value: "f53edf17-42ce-4855-b34c-917f6726b44d", label: "language" },
 ];
-//department options
+
 export const department: DepartmentI[] = [
     { value: "31e4ed2b-8a15-4b4d-852d-805f2d483b5c", label: "Electrical" },
     { value: "af0905fc-3ae8-4672-a9aa-314c054254e7", label: "Software" },

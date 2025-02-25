@@ -36,7 +36,7 @@ export function Header() {
         },
     ];
     return (
-        <div className="grid grid-cols-3 gap-3 mb-4 rounded-md  w-ful ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-3 gap-3 mb-4 rounded-md  w-ful ">
             {headerData.map((data) => (
                 <div className="flex justify-between bg-white p-3 text-xl rounded-md py-7">
                     <h1 className="text-[#b4b4b4]">{data.title}</h1>

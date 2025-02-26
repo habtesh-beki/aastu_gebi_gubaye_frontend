@@ -78,7 +78,7 @@ export default function AddConfession() {
                         <label htmlFor="">Phone Number</label>
                         <Input
                             {...register("phoneNumber", { required: true })}
-                            placeholder="Optional"
+                            placeholder=""
                             className="focus-visible:ring-blue-600"
                         />
                     </div>

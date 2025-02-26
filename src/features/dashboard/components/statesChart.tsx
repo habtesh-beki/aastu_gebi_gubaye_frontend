@@ -1,9 +1,11 @@
 import { ProcessData } from "@/shared/utils/processData";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function Header() {
     const [isLoading, setIsLoding] = useState(true);
     const [studentValue, setStudentValue] = useState<number>();
+    const [studentLength, setStudentLength] = useState();
     const [serviceStudent, setServiceStudent] = useState<number>();
 
     const processStudentData = async () => {
@@ -20,11 +22,25 @@ export function Header() {
         setIsLoding(false);
     };
     processStudentData();
-
+    const token = localStorage.getItem("auth-token");
+    useEffect(() => {
+        axios
+            .get("http://127.0.0.1:3000/api/student/stats/studentdata", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                setStudentLength(response.data.Studentlangth);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });
     const headerData = [
         {
             title: "Total Student",
-            value: isLoading ? "_" : studentValue,
+            value: isLoading ? "_" : studentLength,
         },
         {
             title: "Total students joined service",
@@ -36,7 +52,7 @@ export function Header() {
         },
     ];
     return (
-        <div className="grid grid-cols-3 gap-3 mb-4 rounded-md  w-ful ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-3 gap-3 mb-4 rounded-md  w-ful ">
             {headerData.map((data) => (
                 <div className="flex justify-between bg-white p-3 text-xl rounded-md py-7">
                     <h1 className="text-[#b4b4b4]">{data.title}</h1>

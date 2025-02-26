@@ -63,28 +63,28 @@ export function YearChart() {
                     fill: "var(--color-chrome)",
                 },
                 {
-                    currentYear: "sophomore",
+                    currentYear: "Second Year",
                     memeber: processedYear?.sophomore?.total
                         ? processedYear.sophomore.total
                         : 0,
                     fill: "var(--color-safari)",
                 },
                 {
-                    currentYear: "juniour",
-                    memeber: processedYear?.joniur?.total
-                        ? processedYear.joniur.total
+                    currentYear: "Third Year",
+                    memeber: processedYear?.junior?.total
+                        ? processedYear.junior.total
                         : 0,
                     fill: "var(--color-firefox)",
                 },
                 {
-                    currentYear: "Senior",
+                    currentYear: "Fourth Year",
                     memeber: processedYear?.senior?.total
                         ? processedYear?.senior?.total
                         : 0,
                     fill: "var(--color-edge)",
                 },
                 {
-                    currentYear: "Last Year",
+                    currentYear: "Fifth Year",
                     memeber: processedYear?.lastyear?.total
                         ? processedYear?.lastyear?.total
                         : 0,

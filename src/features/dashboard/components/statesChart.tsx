@@ -1,9 +1,11 @@
 import { ProcessData } from "@/shared/utils/processData";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function Header() {
     const [isLoading, setIsLoding] = useState(true);
     const [studentValue, setStudentValue] = useState<number>();
+    const [studentLength, setStudentLength] = useState();
     const [serviceStudent, setServiceStudent] = useState<number>();
 
     const processStudentData = async () => {
@@ -20,11 +22,26 @@ export function Header() {
         setIsLoding(false);
     };
     processStudentData();
-
+    const token = localStorage.getItem("auth-token");
+    useEffect(() => {
+        axios
+            .get("http://127.0.0.1:3000/api/student", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                console.log("header request", response.data.allLength);
+                setStudentLength(response.data.allLength);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });
     const headerData = [
         {
             title: "Total Student",
-            value: isLoading ? "_" : studentValue,
+            value: isLoading ? "_" : studentLength,
         },
         {
             title: "Total students joined service",

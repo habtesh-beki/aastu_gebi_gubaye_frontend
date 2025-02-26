@@ -25,14 +25,13 @@ export function Header() {
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:3000/api/student", {
+            .get("http://127.0.0.1:3000/api/student/stats/studentdata", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
-                console.log("header request", response.data.allLength);
-                setStudentLength(response.data.allLength);
+                setStudentLength(response.data.Studentlangth);
             })
             .catch((err) => {
                 console.log(err);

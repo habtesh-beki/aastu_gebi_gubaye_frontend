@@ -3,7 +3,7 @@ type DepartmentI = {
     value: string;
     label: string;
 };
-//write all option one place
+
 export const optionslanguage: Options<{ value: string; label: string }> = [
     { value: "ef7d3e8a-2034-4d03-816d-e694ac6d0e79", label: "Amharic" },
     { value: "f36bbaa6-0dbe-4b83-b63d-47e70b8b0f70", label: "Afan Oromo" },

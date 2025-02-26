@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Data } from "@/features/AllMembers/components/columns";
 import { useFetchParams } from "@/features/AllMembers/context/filterParamContex";
 
-export default function useGetStudent() {
+export default function useGetStudent( pagination?: { pageIndex:number, pageSize:number} ) {
 
   type Student = {
     id: string;
@@ -23,26 +23,36 @@ export default function useGetStudent() {
     email: string;
   };
 
+
+  type returnType = {
+    total: number,
+    data: Data[]
+  }
+
   const token = localStorage.getItem("auth-token");
   const { fetchParams } = useFetchParams();
+  const pageIndex = pagination?.pageIndex ? pagination.pageIndex + 1 : 1;
+  console.log({ ...fetchParams, page: pageIndex }, " from the fetch hook");
 
   return useQuery({
-    queryKey: ["students", fetchParams], queryFn: async (): Promise<Data[]> => {
-      console.log(fetchParams);
+    queryKey: ["students", fetchParams, pagination],
+    queryFn: async (): Promise<returnType> => {
 
       const options = {
         method: "GET",
         url: "http://localhost:3000/api/student",
-        params: fetchParams,
+        params: { ...fetchParams, page: pageIndex },
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
 
       let response;
+      let totalNumberOfStudents: number;
       try {
         response = await axios.request(options).then((data) => {
-          return data.data.data.students.map((student: Student) => {
+          totalNumberOfStudents = data.data.total;
+          const studentData =  data.data.data.students.map((student: Student) => {
             return {
               ...student,
               uid: student.id,
@@ -59,15 +69,20 @@ export default function useGetStudent() {
                     : "Super Admin",
             };
           })
+          return {
+            data: studentData,
+            total: totalNumberOfStudents
+          }
         })
       } catch (error) {
-        response = `Error: ${error}`;
+        throw new Error(`Student Fetch Error: ${error}`);
       }
 
       console.log("!!!!!!!!!!!!!!!!!!!!");
       console.log(response);
 
       return response;
-    }
+    },
+    placeholderData: keepPreviousData
   })
 }

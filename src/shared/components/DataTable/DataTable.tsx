@@ -2,7 +2,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
+  useReactTable
 } from "@tanstack/react-table";
 
 import {
@@ -13,23 +13,48 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
+import { Button } from "@/shared/components/ui/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  needsPagination?: boolean,
+  pagination?: {
+    pageIndex: number;
+    pageSize: number;
+  },
+  setPagination?: React.Dispatch<React.SetStateAction<{
+    pageIndex: number;
+    pageSize: number;
+  }>>,
+  pageNumber?: number
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  needsPagination = false,
+  pagination,
+  setPagination,
+  pageNumber
 }: DataTableProps<TData, TValue>) {
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    manualPagination: true,
+    pageCount: pageNumber,
+    rowCount: 10,
+    onPaginationChange: (prop) => {
+      if(setPagination) setPagination(prop);
+      console.log("me: ", prop, pagination);
+    },
+    state: {
+      pagination
+    }
   });
 
-  console.log(table);
 
   return (
     <div className="rounded-xl overflow-hidden">
@@ -68,10 +93,6 @@ export function DataTable<TData, TValue>({
                     key={cell.id}
                     className="border border-gray-200 first:border-none last:border-none"
                   >
-                    {(() => {
-                      console.log(cell);
-                      return null;
-                    })()}
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -86,6 +107,27 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
+      {needsPagination ? <div className="mt-4 p-2 px-4 bg-white flex items-center justify-between rounded-b-lg">
+        <div>
+          <p>{pagination ? pagination?.pageIndex + 1 : ""} of {pageNumber} pages</p>
+        </div>
+        <div className="flex gap-2">
+          <Button
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className="bg-blue-700"
+          >
+            {'<'}
+          </Button>
+          <Button
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            className="bg-blue-700"
+          >
+            {'>'}
+          </Button>
+        </div>
+      </div> : ""}
     </div>
   );
 }

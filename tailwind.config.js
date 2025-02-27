@@ -50,10 +50,20 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-			bg_login: '#ECF2FF',
-			bg_loginBoard: '#F6F9FF',
-			bg_btn: '#0335BA',
-			color_lable:'#525252'
+  			bg_login: '#ECF2FF',
+  			bg_loginBoard: '#F6F9FF',
+  			bg_btn: '#0335BA',
+  			color_lable: '#525252',
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
+  			}
   		}
   	}
   },

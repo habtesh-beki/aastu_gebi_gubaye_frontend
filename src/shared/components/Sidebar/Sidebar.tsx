@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { LogOut, User } from "lucide-react";
 import { Separator } from "@/shared/components/ui/separator";
@@ -15,6 +15,11 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ items, style }: SidebarProps) {
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem("auth-token");
+        navigate("/login");
+    };
     return (
         <aside
             className={`h-screen p-12 w-80 bg-background flex flex-col justify-between ${style}`}
@@ -113,7 +118,7 @@ export default function Sidebar({ items, style }: SidebarProps) {
                     </NavLink>
                 </div>
             </div>
-            <div>
+            <div onClick={handleLogout}>
                 <motion.button
                     className="flex gap-1 items-center text-gray-500"
                     whileHover={{ color: "hsl(var(--destructive))", x: 4 }}

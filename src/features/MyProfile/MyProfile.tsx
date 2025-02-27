@@ -41,13 +41,11 @@ export default function MyProfile() {
                 },
             })
             .then((response) => {
-                console.log(response.data.data);
                 setStudent(response.data.data);
-                console.log(response.data.data.last_name);
                 setLoading(false);
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             });
     }, [token]);
     if (loading) {

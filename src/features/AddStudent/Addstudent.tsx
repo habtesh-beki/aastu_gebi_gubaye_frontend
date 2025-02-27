@@ -85,8 +85,6 @@ export default function AddStudent() {
             service,
         };
         const token = localStorage.getItem("auth-token");
-        console.log(token);
-        console.log(studentData);
         try {
             await axios.post("http://127.0.0.1:3000/api/student", studentData, {
                 headers: {
@@ -98,10 +96,9 @@ export default function AddStudent() {
             alert("student added");
         } catch (error: any) {
             const errorMessage = handleError(error.response.data.message);
-            console.log(error.response.data);
+            console.error(error.response.data);
             alert(errorMessage);
         }
-        console.log(studentData);
     };
 
     return (

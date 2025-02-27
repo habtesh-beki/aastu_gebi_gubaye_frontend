@@ -53,7 +53,6 @@ export function YearChart() {
     useEffect(() => {
         const fechService = async () => {
             const processedYear = (await ProcessData()).byCurrentYear;
-            console.log("current year data", processedYear);
             const chartDataTempo = [
                 {
                     currentYear: "freshman",

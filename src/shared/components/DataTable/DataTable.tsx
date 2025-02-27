@@ -48,7 +48,6 @@ export function DataTable<TData, TValue>({
     rowCount: 10,
     onPaginationChange: (prop) => {
       if(setPagination) setPagination(prop);
-      console.log("me: ", prop, pagination);
     },
     state: {
       pagination

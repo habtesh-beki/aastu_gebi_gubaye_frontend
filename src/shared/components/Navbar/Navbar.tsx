@@ -33,11 +33,10 @@ export default function Navbar({ style }: { style?: string }) {
                 },
             })
             .then((response) => {
-                console.log(response.data.data);
                 setStudent(response.data.data);
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             });
     }, [token]);
     return (

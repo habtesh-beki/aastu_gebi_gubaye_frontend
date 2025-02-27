@@ -20,7 +20,6 @@ export default function Footer({ studentId }: { studentId: string }) {
             alert("error occured");
         }
     };
-    console.log(studentId);
     return (
         <div className="h-20 bg-bg_login flex items-center justify-center gap-x-4 w-full px-3">
             <Button

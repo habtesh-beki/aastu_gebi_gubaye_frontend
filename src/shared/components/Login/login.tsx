@@ -28,12 +28,11 @@ export default function Login({
             setError(false);
             const token = loginUser.data.token;
             localStorage.setItem("auth-token", token);
-            console.log("success");
             setLogedIn(true);
             navigate("/home");
         } catch (error) {
             setError(true);
-            console.log(error);
+            console.error(error);
         }
     };
 

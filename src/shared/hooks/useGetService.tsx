@@ -33,11 +33,8 @@ export default function useGetService() {
           });
         })
       } catch (error) {
-        response = `Error: ${error}`;
+          throw new Error(`Service Fetching Error: ${error}`); 
       }
-
-      console.log("!!!!!!!!!!!!!!!!!!!!");
-      console.log(response);
 
       return response;
     }

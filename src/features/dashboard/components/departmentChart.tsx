@@ -28,11 +28,9 @@ interface IChartData {
 
 export function DepartmentChart() {
     const [chartData, setChartData] = useState<IChartData[]>();
-    console.log(chartData);
     useEffect(() => {
         async function fetch() {
             const processDepart = (await ProcessData()).byDepartment;
-            console.log(processDepart);
             const chartDataTemp = [
                 {
                     department: "Electrical",
@@ -152,7 +150,6 @@ export function DepartmentChart() {
                         : 0,
                 },
             ];
-            console.log("FETCH IS CALLED");
             setChartData(chartDataTemp);
         }
 

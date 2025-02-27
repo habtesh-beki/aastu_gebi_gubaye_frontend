@@ -38,8 +38,6 @@ export default function AddConfession() {
             console.error("there is error", error);
             alert(error);
         }
-
-        console.log(data);
     };
 
     return (

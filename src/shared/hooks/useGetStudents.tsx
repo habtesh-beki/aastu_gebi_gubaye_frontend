@@ -32,7 +32,6 @@ export default function useGetStudent( pagination?: { pageIndex:number, pageSize
   const token = localStorage.getItem("auth-token");
   const { fetchParams } = useFetchParams();
   const pageIndex = pagination?.pageIndex ? pagination.pageIndex + 1 : 1;
-  console.log({ ...fetchParams, page: pageIndex }, " from the fetch hook");
 
   return useQuery({
     queryKey: ["students", fetchParams, pagination],
@@ -77,9 +76,6 @@ export default function useGetStudent( pagination?: { pageIndex:number, pageSize
       } catch (error) {
         throw new Error(`Student Fetch Error: ${error}`);
       }
-
-      console.log("!!!!!!!!!!!!!!!!!!!!");
-      console.log(response);
 
       return response;
     },

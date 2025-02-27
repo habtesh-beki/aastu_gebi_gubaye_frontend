@@ -65,7 +65,6 @@ export default function Footer({ studentId }: { studentId: string }) {
                 );
             })
         );
-        console.log(filteredData);
         try {
             await axios.put(
                 `http://127.0.0.1:3000/api/student/${studentId}`,
@@ -77,7 +76,6 @@ export default function Footer({ studentId }: { studentId: string }) {
                     },
                 }
             );
-            console.log(filteredData);
             alert("student updated");
         } catch (error) {
             console.error("there is error", error);

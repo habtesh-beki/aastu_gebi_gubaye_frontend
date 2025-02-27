@@ -16,7 +16,6 @@ export function Header() {
             0
         );
         const value = Students.reduce((acc, cur) => acc + cur.total, 0);
-        console.log(value);
         setStudentValue(value);
         setServiceStudent(serviceValue);
         setIsLoding(false);
@@ -34,7 +33,6 @@ export function Header() {
                 setStudentLength(response.data.Studentlangth);
             })
             .catch((err) => {
-                console.log(err);
             });
     });
     const headerData = [

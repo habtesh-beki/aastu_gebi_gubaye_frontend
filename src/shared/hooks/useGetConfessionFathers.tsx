@@ -38,10 +38,7 @@ export default function useGetConfessionFathers() {
       } catch (error) {
         response = `Error: ${error}`;
       }
-
-      console.log("!!!!!!!!!!!!!!!!!!!!");
-      console.log(response);
-
+      
       return response;
     }
   })

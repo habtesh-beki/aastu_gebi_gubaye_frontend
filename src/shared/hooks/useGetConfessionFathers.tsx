@@ -26,7 +26,10 @@ export default function useGetConfessionFathers() {
             let response;
             try {
                 response = await axios.request(options).then((data) => {
-                    return data.data.data.confession.map(
+                    const filtered = data.data.data.confession.filter(
+                        (father: ConfessionFather) => father.first_name !== "No"
+                    );
+                    return filtered.map(
                         (confessionFather: ConfessionFather) => {
                             return {
                                 firstName: confessionFather.first_name,

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { LogOut, User } from "lucide-react";
 import {
@@ -27,8 +27,13 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ items, style }: SidebarProps) {
+    const navigate = useNavigate();
     const { state } = useSidebar();
 
+    const handleLogout = () => {
+        localStorage.removeItem("auth-token");
+        navigate("/login");
+    };
     return (
         <ShadcnSidebar
             collapsible="icon"
@@ -197,6 +202,7 @@ export default function Sidebar({ items, style }: SidebarProps) {
                 </SidebarContent>
             </div>
             <SidebarFooter
+                onClick={handleLogout}
                 className={`mt-auto pb-4 ${state === "expanded" ? "px-4" : ""}`}
             >
                 <motion.button

@@ -6,7 +6,7 @@ import { Header } from "./components/statesChart";
 
 export default function Dashboard() {
     return (
-        <ScrollArea className="mt-36 ml-10 mr-10 w-11/12 mb-5">
+        <ScrollArea className="flex flex-col justify-center items-center w-11/12 mb-5 ml-4 mt-4">
             <Header />
             <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-5">
                 <DepartmentChart />

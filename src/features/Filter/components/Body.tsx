@@ -29,7 +29,7 @@ type Inputs = {
 
 export default function Body({ register, setValue }: BodyProps) {
     return (
-        <ScrollArea className="flex flex-col gap-2">
+        <ScrollArea className="grid gap-2">
             <div className="px-2 mb-4">
                 <p className="mb-2 ml-2 text-[#7D807C]">Department</p>
                 <Select

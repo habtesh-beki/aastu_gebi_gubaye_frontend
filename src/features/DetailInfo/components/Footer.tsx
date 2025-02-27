@@ -56,7 +56,7 @@ export default function Footer({ studentId }: { studentId: string }) {
         };
         const token = localStorage.getItem("auth-token");
         const filteredData = Object.fromEntries(
-            Object.entries(studentData).filter(([key, value]) => {
+            Object.entries(studentData).filter(([, value]) => {
                 return (
                     value !== "" &&
                     value !== null &&

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function Header() {
     const [isLoading, setIsLoding] = useState(true);
-    const [studentValue, setStudentValue] = useState<number>();
+    const [, setStudentValue] = useState<number>();
     const [studentLength, setStudentLength] = useState();
     const [serviceStudent, setServiceStudent] = useState<number>();
 
@@ -33,6 +33,7 @@ export function Header() {
                 setStudentLength(response.data.Studentlangth);
             })
             .catch((err) => {
+                console.error(err);
             });
     });
     const headerData = [

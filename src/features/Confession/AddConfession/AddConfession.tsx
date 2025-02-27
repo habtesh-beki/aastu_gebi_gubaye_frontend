@@ -34,7 +34,7 @@ export default function AddConfession() {
                 }
             );
             setFatherAdd(true);
-        } catch (error: any) {
+        } catch (error) {
             console.error("there is error", error);
             alert(error);
         }

@@ -53,7 +53,7 @@ export default function Body({
                 <h5 className="mt-3 font-bold">User Info</h5>
                 <hr className="flex-grow  h-2 mt-4" />
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-5 p-2">
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-4 mt-5 p-2">
                 <div className="flex flex-col gap-2">
                     <label htmlFor="" className="">
                         First Name
@@ -224,7 +224,7 @@ export default function Body({
                     <h2 className="font-bold mr-3">Contact Info</h2>
                     <hr className="flex-grow mt-3" />
                 </div>
-                <div className="grid grid-cols-2 gap-4 p-2">
+                <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-4 p-2">
                     <div className="flex flex-col gap-2">
                         <label htmlFor="" className="">
                             phone Number

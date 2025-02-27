@@ -40,12 +40,12 @@ export default function Navbar({ style }: { style?: string }) {
     return (
         <nav
             className={`p-4 bg-background flex justify-end shadow-md ${style}`}
-        > 
+        >
             <div className="flex items-center gap-5">
                 <div>
                     <p className="space-x-2">
                         <span className="font-extrabold">ቀን</span>{" "}
-                        <span>ግንቦት 01/09/16</span>
+                        <span>ግንቦት 01/09/17</span>
                     </p>
                 </div>
                 <Separator

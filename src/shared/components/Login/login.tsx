@@ -19,11 +19,14 @@ export default function Login({
     const navigate = useNavigate();
     const [error, setError] = useState<boolean>(false);
     const { register, handleSubmit } = useForm<Ilogin>();
+
     const onSubmit: SubmitHandler<Ilogin> = async (data) => {
+        const studentId = data.studentId.toLocaleUpperCase();
+        const newData = { ...data, studentId };
         try {
             const loginUser = await axios.post(
                 "http://127.0.0.1:3000/api/student/login",
-                data
+                newData
             );
             setError(false);
             const token = loginUser.data.token;

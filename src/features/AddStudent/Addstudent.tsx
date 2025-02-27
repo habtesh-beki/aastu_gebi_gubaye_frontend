@@ -49,7 +49,8 @@ export default function AddStudent() {
     const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
     const [studentAdd, setStudentAdd] = useState<boolean>(false);
     // const [error, setError] = useState();
-    const { register, handleSubmit, setValue, control } = useForm<Inputs>();
+    const { register, handleSubmit, setValue, control, reset } =
+        useForm<Inputs>();
 
     useEffect(() => {
         fetch("http://127.0.0.1:3000/api/confession")
@@ -94,6 +95,7 @@ export default function AddStudent() {
             });
             setStudentAdd(true);
             alert("student added");
+            reset();
         } catch (error: any) {
             const errorMessage = handleError(error.response.data.message);
             console.error(error.response.data);

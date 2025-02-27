@@ -1,6 +1,4 @@
-import { NavLink } from "react-router";
 import { Separator } from "@/shared/components/ui/separator";
-import LOGO from "@/assets/logo.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -41,21 +39,8 @@ export default function Navbar({ style }: { style?: string }) {
     }, [token]);
     return (
         <nav
-            className={`p-4 bg-background flex justify-between shadow-md ${style}`}
-        >
-            <NavLink to="/dashboard" className="flex items-center gap-4">
-                <img
-                    src={LOGO}
-                    className="h-12 w-12 object-contain rounded-full"
-                    alt="Mahibere kidusan logo"
-                />
-                <div>
-                    <h1 className="text-xl text-[#0335BA] font-medium">
-                        AASTU Gebi Gubae
-                    </h1>
-                    <h3 className="text-lg text-[#8C8C98]">Main Portal</h3>
-                </div>
-            </NavLink>
+            className={`p-4 bg-background flex justify-end shadow-md ${style}`}
+        > 
             <div className="flex items-center gap-5">
                 <div>
                     <p className="space-x-2">

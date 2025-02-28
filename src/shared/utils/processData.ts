@@ -29,7 +29,6 @@ interface ProcessedResult {
     byService: Record<string, CountResult>;
 }
 export const ProcessData = async () => {
-    let students;
     const token = localStorage.getItem("auth-token");
 
     const response = await axios.get(
@@ -40,7 +39,7 @@ export const ProcessData = async () => {
             },
         }
     );
-    students = response.data.data.students;
+    const students = response.data.data.students;
     const result: ProcessedResult = {
         byDepartment: {},
         byCurrentYear: {},

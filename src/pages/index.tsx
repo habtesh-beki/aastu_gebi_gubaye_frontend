@@ -22,7 +22,7 @@ export default function HomePage() {
                         {
                             name: "Dashboard",
                             icon: LayoutDashboard,
-                            path: "dashboard",
+                            path: "",
                         },
                         {
                             name: "Admins",

@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from "react-router";
+import { Route, BrowserRouter, Routes, Navigate } from "react-router";
 import routes from "@/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LoginPage from "./pages/login";
@@ -15,6 +15,10 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Routes>
+                    <Route
+                        path="/"
+                        element={<Navigate to="/login" replace />}
+                    />
                     <Route
                         path="/login"
                         element={<LoginPage setLogedIn={setLogedIn} />}

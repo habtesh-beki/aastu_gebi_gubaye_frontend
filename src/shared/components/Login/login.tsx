@@ -57,7 +57,7 @@ export default function Login({
             </div>
             <div className="flex flex-col gap-3 flex-grow pl-8 pr-8 bg-bg_loginBoard rounded-b-md">
                 <h2 className="font-bold mt-3">Wellcome Back!</h2>
-                <label htmlFor="" className="mt-2 text-color_lable text-xl">
+                <label htmlFor="" className="mt-4 text-color_lable text-xl">
                     Username
                 </label>
                 <Input
@@ -80,9 +80,10 @@ export default function Login({
                         Invalid studentId or password
                     </p>
                 )}
+                <div className="flex-grow"></div>
                 <Button
                     type="submit"
-                    className="w-full h-11 bg-blue-600 hover:bg-blue-500 mt-4"
+                    className="w-full h-11 bg-blue-600 hover:bg-blue-500 mb-6"
                 >
                     Log In
                 </Button>

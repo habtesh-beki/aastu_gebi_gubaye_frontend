@@ -48,7 +48,6 @@ type ConfessionT = {
 export default function AddStudent() {
     const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
     const [studentAdd, setStudentAdd] = useState<boolean>(false);
-    // const [error, setError] = useState();
     const { register, handleSubmit, setValue, control, reset } =
         useForm<Inputs>();
 
@@ -65,10 +64,7 @@ export default function AddStudent() {
             .then((data) => {
                 setConfession(data);
             })
-            .catch((error) => {
-                console.log(error);
-                // setError(error);
-            });
+            .catch((error) => {});
     }, []);
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -98,7 +94,6 @@ export default function AddStudent() {
             reset();
         } catch (error: any) {
             const errorMessage = handleError(error.response.data.message);
-            console.error(error.response.data);
             alert(errorMessage);
         }
     };

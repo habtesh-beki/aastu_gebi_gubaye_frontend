@@ -28,7 +28,7 @@ export default function useAddStudent() {
 
             const options = {
                 method: "post",
-                url: "http://127.0.0.1:3000/api/student",
+                url: "https://aastu-gibi-gubaye-api.onrender.com/api/student",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

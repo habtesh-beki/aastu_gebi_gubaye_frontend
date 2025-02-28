@@ -6,7 +6,7 @@ export default function Footer({ studentId }: { studentId: string }) {
     const handleDelete = async () => {
         try {
             await axios.delete(
-                `http://127.0.0.1:3000/api/student/${studentId}`,
+                `https://aastu-gibi-gubaye-api.onrender.com/api/student/${studentId}`,
                 {
                     headers: {
                         "Content-Type": "application/json",

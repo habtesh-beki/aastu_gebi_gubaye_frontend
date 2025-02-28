@@ -52,7 +52,7 @@ export default function AddStudent() {
         useForm<Inputs>();
 
     useEffect(() => {
-        fetch("http://127.0.0.1:3000/api/confession")
+        fetch("https://aastu-gibi-gubaye-api.onrender.com/api/confession")
             .then(async (response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -83,12 +83,16 @@ export default function AddStudent() {
         };
         const token = localStorage.getItem("auth-token");
         try {
-            await axios.post("http://127.0.0.1:3000/api/student", studentData, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            await axios.post(
+                "https://aastu-gibi-gubaye-api.onrender.com/api/student",
+                studentData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             setStudentAdd(true);
             alert("student added");
             reset();

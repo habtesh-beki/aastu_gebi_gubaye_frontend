@@ -32,7 +32,7 @@ export const ProcessData = async () => {
     const token = localStorage.getItem("auth-token");
 
     const response = await axios.get(
-        "http://127.0.0.1:3000/api/student/stats/studentdata",
+        "https://aastu-gibi-gubaye-api.onrender.com/api/student/stats/studentdata",
         {
             headers: {
                 Authorization: `Bearer ${token}`,

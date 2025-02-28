@@ -17,7 +17,7 @@ export default function useGetConfessionFathers() {
         queryFn: async (): Promise<Data[]> => {
             const options = {
                 method: "GET",
-                url: "http://localhost:3000/api/confession",
+                url: "https://aastu-gibi-gubaye-api.onrender.com/api/confession",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

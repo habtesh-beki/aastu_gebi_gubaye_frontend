@@ -24,7 +24,7 @@ export default function AddConfession() {
         const token = localStorage.getItem("auth-token");
         try {
             await axios.post(
-                "http://127.0.0.1:3000/api/confession",
+                "https://aastu-gibi-gubaye-api.onrender.com/api/confession",
                 confessionFatherData,
                 {
                     headers: {

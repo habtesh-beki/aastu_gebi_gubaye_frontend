@@ -43,7 +43,7 @@ export default function Login({
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col h-1/2 w-96"
+            className="flex flex-col lg:h-1/2 sm:h-2/3 lg:w-96 md:w-96 sm:w-80"
         >
             <div className="h-32 bg-white flex flex-col justify-center items-center rounded-t-md">
                 <img

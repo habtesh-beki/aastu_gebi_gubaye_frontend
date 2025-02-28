@@ -89,7 +89,7 @@ export default function Footer({ studentId }: { studentId: string }) {
                 <DialogTrigger className="text-red-600 hover:text-white w-1/2 bg-transparent hover:bg-red-600 border-2 hover:border-[0px] border-solid border-red-600 p-2 rounded-md">
                     Remove
                 </DialogTrigger>
-                <DialogContent className="flex bg-white flex-col  justify-between absolute p-0  border rounded-lg overflow-hidden shadow-lg">
+                <DialogContent className=" bg-white p-0  border rounded-lg overflow-hidden shadow-lg">
                     <DialogHeader>
                         <WarningHeader />
                     </DialogHeader>
@@ -104,7 +104,7 @@ export default function Footer({ studentId }: { studentId: string }) {
                 <DialogTrigger className="bg-bg_btn hover:bg-blue-600 w-1/2 p-2 text-white rounded-md">
                     Edit
                 </DialogTrigger>
-                <DialogContent className="flex flex-col w-3/4 h-2/3 rounded-md absolute shadow-2xl p-0">
+                <DialogContent className="w-3/4 h-2/3 rounded-md  shadow-2xl p-0">
                     <DialogHeader>
                         <UpdateHeader />
                     </DialogHeader>

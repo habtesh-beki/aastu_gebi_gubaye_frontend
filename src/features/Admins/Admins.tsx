@@ -5,9 +5,7 @@ import {
     TabsTrigger,
 } from "@/shared/components/ui/tabs";
 import { DataTable } from "@/shared/components/DataTable/DataTable";
-import {
-    columns as ServiceColumns,
-} from "./components/ServicesColumns";
+import { columns as ServiceColumns } from "./components/ServicesColumns";
 import { columns as ConfessionFatherColumns } from "./components/ConfessionFatherColumns";
 import AddStudent from "@/features/AddStudent/Addstudent";
 import AddConfession from "@/features/Confession/AddConfession/AddConfession";
@@ -25,7 +23,7 @@ export default function Admins() {
     return (
         <Tabs
             defaultValue="account"
-            className="container mx-auto pt-32 pb-12 px-8 space-y-6"
+            className="container mx-auto pt-10 pb-12 px-8 space-y-6"
         >
             <TabsList className="bg-white h-12 p-2">
                 <TabsTrigger

@@ -5,6 +5,7 @@ import LoginPage from "./pages/login";
 import { ProtectedRoute } from "./shared/utils/protectedRoute";
 import HomePage from "./pages/index";
 import { useState } from "react";
+import Dashboard from "./features/dashboard/Dashboard";
 
 function App() {
     const [logedIn, setLogedIn] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function App() {
                     />
                     <Route element={<ProtectedRoute logedIn={logedIn} />}>
                         <Route path="/home" element={<HomePage />}>
+                            <Route index element={<Dashboard />} />
                             {routes.map(({ path, element }) => {
                                 return <Route path={path} element={element} />;
                             })}

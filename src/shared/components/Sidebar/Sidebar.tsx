@@ -40,11 +40,9 @@ export default function Sidebar({ items, style }: SidebarProps) {
             className={`bg-background flex flex-col justify-between ${style}`}
         >
             <div className={`pt-4 ${state === "expanded" ? "px-4" : ""}`}>
+                {/* ///dashboard */}
                 <SidebarHeader>
-                    <NavLink
-                        to="/dashboard"
-                        className="flex items-center gap-4"
-                    >
+                    <NavLink to="" className="flex items-center gap-4">
                         <img
                             src={LOGO}
                             className="h-12 w-12 object-contain rounded-full"
@@ -78,6 +76,7 @@ export default function Sidebar({ items, style }: SidebarProps) {
                                                 <NavLink
                                                     key={item.name}
                                                     to={item.path}
+                                                    end
                                                 >
                                                     {({ isActive }) => (
                                                         <motion.div

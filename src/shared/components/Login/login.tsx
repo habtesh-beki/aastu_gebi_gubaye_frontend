@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import Logo from "@/assets/logo.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
+import { ENV } from "@/shared/utils/env";
 
 type Ilogin = {
     studentId: string;
@@ -25,7 +26,7 @@ export default function Login({
         const newData = { ...data, studentId };
         try {
             const loginUser = await axios.post(
-                "https://aastu-gibi-gubaye-api.onrender.com/api/student/login",
+                ENV.apiBaseURL + "/api/student/login",
                 newData
             );
             setError(false);

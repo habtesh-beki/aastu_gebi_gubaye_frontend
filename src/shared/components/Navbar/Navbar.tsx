@@ -1,6 +1,7 @@
 import { Separator } from "@/shared/components/ui/separator";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ENV } from "@/shared/utils/env";
 
 type Istudent = {
     id: string;
@@ -25,14 +26,11 @@ export default function Navbar({ style }: { style?: string }) {
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         axios
-            .get(
-                "https://aastu-gibi-gubaye-api.onrender.com/api/student/logedin/person",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
+            .get(ENV.apiBaseURL + "/api/student/logedin/person", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((response) => {
                 setStudent(response.data.data);
             })

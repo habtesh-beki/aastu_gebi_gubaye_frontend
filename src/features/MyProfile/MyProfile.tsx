@@ -10,6 +10,7 @@ import {
     User,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ENV } from "@/shared/utils/env";
 
 type Istudent = {
     id: string;
@@ -35,14 +36,11 @@ export default function MyProfile() {
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         axios
-            .get(
-                "https://aastu-gibi-gubaye-api.onrender.com/api/student/logedin/person",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
+            .get(ENV.apiBaseURL + "/api/student/logedin/person", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((response) => {
                 setStudent(response.data.data);
                 setLoading(false);

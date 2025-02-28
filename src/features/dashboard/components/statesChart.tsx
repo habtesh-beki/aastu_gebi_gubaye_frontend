@@ -1,3 +1,4 @@
+import { ENV } from "@/shared/utils/env";
 import { ProcessData } from "@/shared/utils/processData";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -24,14 +25,11 @@ export function Header() {
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         axios
-            .get(
-                "https://aastu-gibi-gubaye-api.onrender.com/api/student/stats/studentdata",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
+            .get(ENV.apiBaseURL + "/api/student/stats/studentdata", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((response) => {
                 setStudentLength(response.data.Studentlangth);
             })

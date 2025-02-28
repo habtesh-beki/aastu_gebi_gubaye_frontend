@@ -19,6 +19,7 @@ import {
     UpdateHeader,
 } from "@/features/UpdateStudent/UpdateStudent";
 import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
+import { ENV } from "@/shared/utils/env";
 
 type Inputs = {
     first_name: string;
@@ -67,7 +68,7 @@ export default function Footer({ studentId }: { studentId: string }) {
         );
         try {
             await axios.put(
-                `https://aastu-gibi-gubaye-api.onrender.com/api/student/${studentId}`,
+                ENV.apiBaseURL + `/api/student/${studentId}`,
                 filteredData,
                 {
                     headers: {

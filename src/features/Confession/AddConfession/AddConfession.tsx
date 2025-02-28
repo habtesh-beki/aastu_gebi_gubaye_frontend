@@ -5,6 +5,7 @@ import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
+import { ENV } from "@/shared/utils/env";
 
 type confessionI = {
     first_name: "string";
@@ -22,7 +23,7 @@ export default function AddConfession() {
         const token = localStorage.getItem("auth-token");
         try {
             await axios.post(
-                "https://aastu-gibi-gubaye-api.onrender.com/api/confession",
+                ENV.apiBaseURL + "/api/confession",
                 confessionFatherData,
                 {
                     headers: {

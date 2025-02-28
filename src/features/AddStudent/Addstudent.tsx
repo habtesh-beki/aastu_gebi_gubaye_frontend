@@ -21,6 +21,7 @@ import { Button } from "@/shared/components/ui/button";
 import { useEffect, useState } from "react";
 import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
 import { handleError } from "@/shared/utils/handleError";
+import { ENV } from "@/shared/utils/env";
 
 type Inputs = {
     first_name: string;
@@ -51,7 +52,7 @@ export default function AddStudent() {
         useForm<Inputs>();
 
     useEffect(() => {
-        fetch("https://aastu-gibi-gubaye-api.onrender.com/api/confession")
+        fetch(ENV.apiBaseURL + "/api/confession")
             .then(async (response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -84,16 +85,12 @@ export default function AddStudent() {
         };
         const token = localStorage.getItem("auth-token");
         try {
-            await axios.post(
-                "https://aastu-gibi-gubaye-api.onrender.com/api/student",
-                studentData,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
+            await axios.post(ENV.apiBaseURL + "/api/student", studentData, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             alert("student added");
             reset();
         } catch (error: any) {

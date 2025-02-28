@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ENV } from "./env";
 type Student = {
     id: string;
     first_name: string;
@@ -32,7 +33,7 @@ export const ProcessData = async () => {
     const token = localStorage.getItem("auth-token");
 
     const response = await axios.get(
-        "https://aastu-gibi-gubaye-api.onrender.com/api/student/stats/studentdata",
+        ENV.apiBaseURL + "/api/student/stats/studentdata",
         {
             headers: {
                 Authorization: `Bearer ${token}`,

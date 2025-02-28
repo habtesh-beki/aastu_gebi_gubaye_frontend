@@ -1,19 +1,17 @@
 import { Button } from "@/shared/components/ui/button";
+import { ENV } from "@/shared/utils/env";
 import axios from "axios";
 
 export default function Footer({ studentId }: { studentId: string }) {
     const token = localStorage.getItem("auth-token");
     const handleDelete = async () => {
         try {
-            await axios.delete(
-                `https://aastu-gibi-gubaye-api.onrender.com/api/student/${studentId}`,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
+            await axios.delete(`${ENV.apiBaseURL}/api/student/${studentId}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             alert("student deleted");
         } catch (error) {
             console.error("there is error", error);

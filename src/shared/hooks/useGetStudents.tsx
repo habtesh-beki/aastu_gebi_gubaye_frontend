@@ -2,6 +2,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Data } from "@/features/AllMembers/components/columns";
 import { useFetchParams } from "@/features/AllMembers/context/filterParamContex";
+import { ENV } from "../utils/env";
 
 export default function useGetStudent(pagination?: {
     pageIndex: number;
@@ -39,7 +40,7 @@ export default function useGetStudent(pagination?: {
         queryFn: async (): Promise<returnType> => {
             const options = {
                 method: "GET",
-                url: "https://aastu-gibi-gubaye-api.onrender.com/api/student",
+                url: ENV.apiBaseURL + "/api/student",
                 params: { ...fetchParams, page: pageIndex },
                 headers: {
                     Authorization: `Bearer ${token}`,

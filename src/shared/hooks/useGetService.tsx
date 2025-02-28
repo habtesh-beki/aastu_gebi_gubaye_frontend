@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Data } from "@/features/Admins/components/ServicesColumns";
+import { ENV } from "../utils/env";
 
 export default function useGetService() {
     type Service = {
@@ -15,7 +16,7 @@ export default function useGetService() {
         queryFn: async (): Promise<Data[]> => {
             const options = {
                 method: "GET",
-                url: "https://aastu-gibi-gubaye-api.onrender.com/api/service",
+                url: ENV.apiBaseURL + "/api/service",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

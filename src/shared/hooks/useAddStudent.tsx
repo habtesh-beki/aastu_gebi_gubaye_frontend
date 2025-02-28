@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { ENV } from "../utils/env";
 
 export default function useAddStudent() {
     type studentData = {
@@ -28,7 +29,7 @@ export default function useAddStudent() {
 
             const options = {
                 method: "post",
-                url: "https://aastu-gibi-gubaye-api.onrender.com/api/student",
+                url: ENV.apiBaseURL + "/api/student",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

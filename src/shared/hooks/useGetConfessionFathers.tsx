@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Data } from "@/features/Admins/components/ConfessionFatherColumns";
+import { ENV } from "../utils/env";
 
 export default function useGetConfessionFathers() {
     type ConfessionFather = {
@@ -17,7 +18,7 @@ export default function useGetConfessionFathers() {
         queryFn: async (): Promise<Data[]> => {
             const options = {
                 method: "GET",
-                url: "https://aastu-gibi-gubaye-api.onrender.com/api/confession",
+                url: ENV.apiBaseURL + "/api/confession",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

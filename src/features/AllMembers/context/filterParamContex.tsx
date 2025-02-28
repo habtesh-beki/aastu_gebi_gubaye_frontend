@@ -11,6 +11,8 @@ type Params = {
     keyword: string;
 };
 
+export type CSVParams = Omit<Params, "page">;
+
 interface FetchParamsContextType {
     fetchParams: Params;
     setFetchParams: React.Dispatch<React.SetStateAction<Params>>;

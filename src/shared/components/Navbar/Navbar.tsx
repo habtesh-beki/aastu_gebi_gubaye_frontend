@@ -25,11 +25,14 @@ export default function Navbar({ style }: { style?: string }) {
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:3000/api/student/logedin/person", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+            .get(
+                "https://aastu-gibi-gubaye-api.onrender.com/api/student/logedin/person",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
             .then((response) => {
                 setStudent(response.data.data);
             })

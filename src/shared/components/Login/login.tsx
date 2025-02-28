@@ -25,7 +25,7 @@ export default function Login({
         const newData = { ...data, studentId };
         try {
             const loginUser = await axios.post(
-                "http://127.0.0.1:3000/api/student/login",
+                "https://aastu-gibi-gubaye-api.onrender.com/api/student/login",
                 newData
             );
             setError(false);

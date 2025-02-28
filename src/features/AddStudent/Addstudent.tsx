@@ -48,12 +48,11 @@ type ConfessionT = {
 export default function AddStudent() {
     const [confessionObj, setConfession] = useState<ConfessionT[]>([]);
     const [studentAdd, setStudentAdd] = useState<boolean>(false);
-    // const [error, setError] = useState();
     const { register, handleSubmit, setValue, control, reset } =
         useForm<Inputs>();
 
     useEffect(() => {
-        fetch("http://127.0.0.1:3000/api/confession")
+        fetch("https://aastu-gibi-gubaye-api.onrender.com/api/confession")
             .then(async (response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -65,10 +64,7 @@ export default function AddStudent() {
             .then((data) => {
                 setConfession(data);
             })
-            .catch((error) => {
-                console.log(error);
-                // setError(error);
-            });
+            .catch((error) => {});
     }, []);
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -87,18 +83,21 @@ export default function AddStudent() {
         };
         const token = localStorage.getItem("auth-token");
         try {
-            await axios.post("http://127.0.0.1:3000/api/student", studentData, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            await axios.post(
+                "https://aastu-gibi-gubaye-api.onrender.com/api/student",
+                studentData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             setStudentAdd(true);
             alert("student added");
             reset();
         } catch (error: any) {
             const errorMessage = handleError(error.response.data.message);
-            console.error(error.response.data);
             alert(errorMessage);
         }
     };

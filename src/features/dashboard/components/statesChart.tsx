@@ -24,11 +24,14 @@ export function Header() {
     const token = localStorage.getItem("auth-token");
     useEffect(() => {
         axios
-            .get("http://127.0.0.1:3000/api/student/stats/studentdata", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+            .get(
+                "https://aastu-gibi-gubaye-api.onrender.com/api/student/stats/studentdata",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
             .then((response) => {
                 setStudentLength(response.data.Studentlangth);
             })

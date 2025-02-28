@@ -67,7 +67,7 @@ export default function Footer({ studentId }: { studentId: string }) {
         );
         try {
             await axios.put(
-                `http://127.0.0.1:3000/api/student/${studentId}`,
+                `https://aastu-gibi-gubaye-api.onrender.com/api/student/${studentId}`,
                 filteredData,
                 {
                     headers: {

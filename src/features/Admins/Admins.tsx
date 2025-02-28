@@ -23,7 +23,7 @@ export default function Admins() {
     return (
         <Tabs
             defaultValue="account"
-            className="container mx-auto pt-10 pb-12 px-8 space-y-6"
+            className="container mx-auto pt-10 pb-12 px-3 space-y-6"
         >
             <TabsList className="bg-white h-12 p-2">
                 <TabsTrigger

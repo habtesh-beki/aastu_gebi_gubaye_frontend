@@ -24,7 +24,7 @@ export default function AddConfession() {
         const token = localStorage.getItem("auth-token");
         try {
             await axios.post(
-                "http://127.0.0.1:3000/api/confession",
+                "https://aastu-gibi-gubaye-api.onrender.com/api/confession",
                 confessionFatherData,
                 {
                     headers: {
@@ -34,8 +34,8 @@ export default function AddConfession() {
                 }
             );
             setFatherAdd(true);
+            alert("confession father added");
         } catch (error) {
-            console.error("there is error", error);
             alert(error);
         }
     };
@@ -81,9 +81,6 @@ export default function AddConfession() {
                         />
                     </div>
                 </div>
-                {fatherAdd && (
-                    <p className="text-green-500">confession father added</p>
-                )}
                 <Button
                     type="submit"
                     className="my-4 bg-bg_btn hover:bg-blue-500"

@@ -9,7 +9,6 @@ import Dashboard from "./features/dashboard/Dashboard";
 
 function App() {
     const [logedIn, setLogedIn] = useState<boolean>(false);
-    // const [firstName, setFirstName] = useState('')
     const queryClient = new QueryClient();
     return (
         <QueryClientProvider client={queryClient}>

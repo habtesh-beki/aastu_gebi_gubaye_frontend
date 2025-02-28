@@ -10,13 +10,7 @@ import {
 export default function HomePage() {
     return (
         <div className="bg-[#dbeafe]">
-            <SidebarProvider
-                style={{
-                    "--sidebar-width": "20rem",
-                    "--sidebar-width-mobile": "20rem",
-                    "--sidebar-width-icon": "4rem",
-                }}
-            >
+            <SidebarProvider>
                 <Sidebar
                     items={[
                         {

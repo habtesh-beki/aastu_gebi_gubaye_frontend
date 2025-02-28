@@ -368,9 +368,6 @@ export default function AddStudent() {
                         </div>
                     </div>
                 </div>
-                {studentAdd && (
-                    <p className="text-green-500">student registred</p>
-                )}
                 <Button
                     type="submit"
                     className="my-4 bg-bg_btn hover:bg-blue-500"

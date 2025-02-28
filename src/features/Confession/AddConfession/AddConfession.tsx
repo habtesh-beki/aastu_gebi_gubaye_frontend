@@ -4,7 +4,6 @@ import { ScrollArea } from "@/shared/components/ui/scroll-area";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
-import { useState } from "react";
 import { capitalizeFirstLetter } from "@/shared/utils/capitalizeFirstLitter";
 
 type confessionI = {
@@ -14,7 +13,6 @@ type confessionI = {
 };
 
 export default function AddConfession() {
-    const [fatherAdd, setFatherAdd] = useState<boolean>(false);
     const { register, handleSubmit } = useForm<confessionI>();
 
     const onSubmit: SubmitHandler<confessionI> = async (data) => {
@@ -33,7 +31,6 @@ export default function AddConfession() {
                     },
                 }
             );
-            setFatherAdd(true);
             alert("confession father added");
         } catch (error) {
             alert(error);

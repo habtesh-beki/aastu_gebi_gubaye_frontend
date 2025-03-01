@@ -81,6 +81,7 @@ export const columns: ColumnDef<Data>[] = [
                         <DialogFooter className="px-6 py-4 bg-bg_login">
                             <DetailInfoFooter
                                 studentId={props.row.original.uid}
+                                students={props.row.original}
                             />
                         </DialogFooter>
                     </DialogContent>

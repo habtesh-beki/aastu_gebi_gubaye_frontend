@@ -1,6 +1,5 @@
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import Mselect, { MultiValue } from "react-select";
-//options
 import {
     optionslanguage,
     optionsService,
@@ -37,15 +36,36 @@ type Inputs = {
     phone_number: string;
     email: string;
 };
-
+export type Data = {
+    id: string;
+    uid: string;
+    first_name: string;
+    last_name: string;
+    fullName: string;
+    baptismal_name: string;
+    gender: string;
+    student_id: string;
+    department: string;
+    service: { id: string; name: string }[];
+    language: { id: string; name: string }[];
+    current_year: string;
+    password: string;
+    confession: string;
+    role: string;
+    phone_number: string;
+    phoneNumber: string;
+    email: string;
+};
 export default function Body({
     register,
     control,
     setValue,
+    students,
 }: {
     register: UseFormRegister<Inputs>;
     control: Control<Inputs, any>;
     setValue: UseFormSetValue<Inputs>;
+    students: Data;
 }) {
     return (
         <ScrollArea className="flex-grow border-1 bg-white border-red-500 border-solid pl-9 pr-7">
@@ -61,6 +81,7 @@ export default function Body({
                     <Input
                         {...register("first_name")}
                         className="focus-visible:ring-blue-600"
+                        defaultValue={students.first_name}
                     />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -68,6 +89,7 @@ export default function Body({
                     <Input
                         {...register("last_name")}
                         className="focus-visible:ring-blue-600"
+                        defaultValue={students.last_name}
                     />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -75,12 +97,14 @@ export default function Body({
                     <Input
                         {...register("baptismal_name")}
                         className="focus-visible:ring-blue-600"
+                        defaultValue={students.baptismal_name}
                     />
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="">Gender</label>
                     <Select
                         onValueChange={(value) => setValue("gender", value)}
+                        defaultValue={students.gender}
                     >
                         <SelectTrigger
                             {...register("gender")}
@@ -99,16 +123,19 @@ export default function Body({
                     <Input
                         {...register("student_id")}
                         className="focus-visible:ring-blue-600"
+                        defaultValue={students.student_id}
                     />
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="">Department</label>
                     <Select
                         onValueChange={(value) => setValue("department", value)}
+                        defaultValue={students.department}
                     >
                         <SelectTrigger
                             {...register("department")}
                             className="focus:ring-blue-600"
+                            defaultValue={students.department}
                         >
                             <SelectValue placeholder="Department" />
                         </SelectTrigger>
@@ -129,6 +156,7 @@ export default function Body({
                         onValueChange={(value) =>
                             setValue("current_year", value)
                         }
+                        defaultValue={students.current_year}
                     >
                         <SelectTrigger
                             {...register("current_year")}
@@ -138,10 +166,16 @@ export default function Body({
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="freshman">Freshman</SelectItem>
-                            <SelectItem value="sophomore">sophomore</SelectItem>
-                            <SelectItem value="junior">junior</SelectItem>
-                            <SelectItem value="senior">senior</SelectItem>
-                            <SelectItem value="lastyear">last year</SelectItem>
+                            <SelectItem value="second_year">
+                                second_year
+                            </SelectItem>
+                            <SelectItem value="thrid_year">
+                                thrid_year
+                            </SelectItem>
+                            <SelectItem value="fourth_year">
+                                fourth_year
+                            </SelectItem>
+                            <SelectItem value="last_year">last_year</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
@@ -162,6 +196,7 @@ export default function Body({
                         render={({ field }) => (
                             <Mselect
                                 {...field}
+                                //
                                 defaultValue={[optionslanguage[1]]}
                                 isMulti
                                 name="language"
@@ -193,12 +228,15 @@ export default function Body({
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="">Role</label>
-                    <Select onValueChange={(value) => setValue("role", value)}>
+                    <Select
+                        onValueChange={(value) => setValue("role", value)}
+                        defaultValue={students.role}
+                    >
                         <SelectTrigger
                             {...register("role")}
                             className="focus:ring-blue-600"
                         >
-                            <SelectValue placeholder="Role" />
+                            <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="std-user">student</SelectItem>
@@ -216,6 +254,7 @@ export default function Body({
                         type="email"
                         placeholder="Optional"
                         className="focus-visible:ring-blue-600"
+                        defaultValue={students.email}
                     />
                 </div>
             </div>
@@ -232,6 +271,7 @@ export default function Body({
                         <Input
                             {...register("phone_number")}
                             className="focus-visible:ring-blue-600"
+                            defaultValue={students.phone_number}
                         />
                     </div>
                 </div>

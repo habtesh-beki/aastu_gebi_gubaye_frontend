@@ -119,7 +119,7 @@ export function FilterMembers() {
                 </div>
                 <div className="text-blue-700 font-bold space-x-2 flex gap-4 items-center">
                     <Dialog open={open} onOpenChange={setOpen}>
-                        <DialogTrigger className="text-md px-10 py-4 bg-blue-100 text-blue-700 flex gap-2 rounded-lg border-[2.5px] border-blue-400 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2">
+                        <DialogTrigger className="text-md px-6 py-2 lg:px-10 lg:py-4 md:px-10 md:py-4 bg-blue-100 text-blue-700 flex gap-2 rounded-lg border-[2.5px] border-blue-400 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2">
                             <Filter />
                             Filter
                         </DialogTrigger>
@@ -142,14 +142,14 @@ export function FilterMembers() {
                         </DialogContent>
                     </Dialog>
                     <button
-                        className="text-md py-4 px-4 text-blue-700 bg-blue-100 rounded-lg border-[2.5px] border-blue-400 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2"
+                        className="text-md py-2 px-2 lg:py-4 lg:px-4 md:py-4 md:px-4 text-blue-700 bg-blue-100 rounded-lg border-[2.5px] border-blue-400 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2"
                         onClick={handleClearFilter}
                     >
                         <FilterX />
                     </button>
                     <button
                         onClick={requestForCSVData}
-                        className="px-6 py-4 bg-blue-100 text-blue-700 rounded-lg border-[2.5px] border-blue-400 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2"
+                        className="px-3 py-2 lg:px-6 lg:py-4 md:px-6 md:py-4 bg-blue-100 text-blue-700 rounded-lg border-[2.5px] border-blue-400 hover:bg-blue-700 hover:text-white hover:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-700 focus-visible:ring-offset-2"
                     >
                         <FileSpreadsheet />
                     </button>

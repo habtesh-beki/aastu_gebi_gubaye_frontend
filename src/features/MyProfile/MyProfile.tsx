@@ -57,19 +57,19 @@ export default function MyProfile() {
     }
     return (
         <div className="flex justify-center h-3/4 items-center mt-36 w-full ">
-            <div className="w-11/12 h-full bg-white px-16 py-4 rounded-md ">
+            <div className="w-full lg:w-11/12 md:w-11/12 h-full bg-white  rounded-md ">
                 <div>
-                    <h1 className="text-5xl font-bold mb-4 pt-5">
+                    <h1 className="text-xl lg:text-3xl md:text-3xl font-bold mb-4 pt-5 ml-3">
                         Member Profile
                     </h1>
-                    <div className="flex justify-start items-center mx-10">
+                    <div className="gap-4 lg:gap-2 md:gap-2 flex justify-between items-center mx-10">
                         <img
-                            className="w-40 h-40"
+                            className="w-12 h-12 lg:w-30 lg:h-30 md:w-30 md:h-30"
                             src={image}
                             alt="profile image"
                         />
                         <div className="flex flex-col justify-between">
-                            <span className="text-2xl font-bold">
+                            <span className="text-xl lg:text-2xl md:text-2xl font-bold">
                                 {student.first_name} {student.last_name}
                             </span>
                             <span>
@@ -82,7 +82,7 @@ export default function MyProfile() {
                 </div>
 
                 <Separator className="my-4" />
-                <div className="flex justify-between py-7 text-xl">
+                <div className="flex justify-between py-7 text-xl px-4">
                     <div>
                         <div className="mb-4">
                             <span className="flex font-bold gap-3 mb-1">
@@ -99,7 +99,7 @@ export default function MyProfile() {
                             <span>{student.email ? student.email : "-"}</span>
                         </div>
                     </div>
-                    <div>
+                    <div className="px-3">
                         <div className="mb-4">
                             <span className="flex font-bold gap-3 mb-2">
                                 <GraduationCap />
@@ -116,7 +116,7 @@ export default function MyProfile() {
                     </div>
                 </div>
                 <Separator />
-                <div className="py-5 ">
+                <div className="py-5 mx-3">
                     <span className="flex font-bold gap-3 mb-3">
                         <Globe /> Language
                     </span>
@@ -129,7 +129,7 @@ export default function MyProfile() {
                     </div>
                 </div>
                 <Separator />
-                <div className="pt-6">
+                <div className="pt-6 mx-3">
                     <span className="flex font-bold gap-3 mb-3">
                         <BookOpenCheck /> <span>Service</span>
                     </span>

@@ -54,7 +54,7 @@ export default function Navbar({ style }: { style?: string }) {
                     className="h-9 text-[##333333]"
                 />
                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 text-lg text-white font-extrabold bg-[#3D63DD] rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 text-md lg:text-lg md:text-lg text-white font-extrabold bg-[#3D63DD] rounded-full flex items-center justify-center">
                         {student?.first_name.slice(0, 1)}
                         {student?.last_name.slice(0, 1)}
                     </div>

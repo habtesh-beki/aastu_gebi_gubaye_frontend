@@ -57,7 +57,7 @@ export default function MyProfile() {
     }
     return (
         <div className="flex justify-center h-3/4 items-center mt-36 w-full ">
-            <div className="w-full lg:w-11/12 md:w-11/12 h-full bg-white  rounded-md ">
+            <div className="w-11/12 lg:w-11/12 md:w-11/12 h-full bg-white  rounded-md ">
                 <div>
                     <h1 className="text-xl lg:text-3xl md:text-3xl font-bold mb-4 pt-5 ml-3">
                         Member Profile
@@ -82,9 +82,9 @@ export default function MyProfile() {
                 </div>
 
                 <Separator className="my-4" />
-                <div className="flex justify-between py-7 text-xl px-4">
+                <div className="flex flex-col lg:flex-row md:flex-row justify-between py-7 text-xl px-4 gap-3">
                     <div>
-                        <div className="mb-4">
+                        <div className="mb-5">
                             <span className="flex font-bold gap-3 mb-1">
                                 <User /> <span>Full Name</span>
                             </span>
@@ -99,8 +99,8 @@ export default function MyProfile() {
                             <span>{student.email ? student.email : "-"}</span>
                         </div>
                     </div>
-                    <div className="px-3">
-                        <div className="mb-4">
+                    <div className=" lg:px-3 md:px-3">
+                        <div className="mb-5">
                             <span className="flex font-bold gap-3 mb-2">
                                 <GraduationCap />
                                 <span>Student Id</span>

@@ -1,3 +1,3 @@
 export const ENV = {
-    apiBaseURL: "https://aastu-gibi-gubaye-api.onrender.com",
+    apiBaseURL: "http://localhost:3000",
 };

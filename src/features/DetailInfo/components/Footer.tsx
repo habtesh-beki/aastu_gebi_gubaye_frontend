@@ -38,7 +38,34 @@ type Inputs = {
     email: string;
 };
 
-export default function Footer({ studentId }: { studentId: string }) {
+export type Data = {
+    id: string;
+    uid: string;
+    first_name: string;
+    last_name: string;
+    fullName: string;
+    baptismal_name: string;
+    gender: string;
+    student_id: string;
+    department: string;
+    service: { id: string; name: string }[];
+    language: { id: string; name: string }[];
+    current_year: string;
+    password: string;
+    confession: string;
+    role: string;
+    phone_number: string;
+    phoneNumber: string;
+    email: string;
+};
+
+export default function Footer({
+    studentId,
+    students,
+}: {
+    studentId: string;
+    students: Data;
+}) {
     const { register, handleSubmit, control, setValue } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -55,6 +82,7 @@ export default function Footer({ studentId }: { studentId: string }) {
             service,
             language,
         };
+        console.log(studentData);
         const token = localStorage.getItem("auth-token");
         const filteredData = Object.fromEntries(
             Object.entries(studentData).filter(([, value]) => {
@@ -113,6 +141,7 @@ export default function Footer({ studentId }: { studentId: string }) {
                         register={register}
                         control={control}
                         setValue={setValue}
+                        students={students}
                     />
                     <DialogFooter>
                         <UpdateFooter onSubmit={handleSubmit(onSubmit)} />

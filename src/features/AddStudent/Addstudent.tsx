@@ -298,6 +298,9 @@ export default function AddStudent() {
                                 <SelectItem value="Super-admin">
                                     Super Admin
                                 </SelectItem>
+                                <SelectItem value="Enroller">
+                                    Enroller
+                                </SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
